@@ -1,11 +1,8 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import {
-  Avatar,
-  AvatarFallback,
-} from "@/components/ui/avatar"
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   DropdownMenuLabel,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   HomeIcon,
   UsersIcon,
@@ -22,40 +19,44 @@ import {
   CalendarDaysIcon,
   LogInIcon,
   UserIcon,
-} from "lucide-react"
-import { useEffect, useState } from "react"
+} from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
-    const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-    useEffect(() => {
-      const handleScroll = () => {
-        setScrolled(window.scrollY > 50);
-      };
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
 
-      window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    }, []);
-  const isLoggedIn = false // Replace with real auth state in your app
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  const isLoggedIn = false; // Replace with real auth state in your app
 
   const navItems = [
     { title: "Home", href: "/", icon: HomeIcon },
     { title: "Tutors", href: "/tutors", icon: UsersIcon },
-  ]
+  ];
 
   const authItems = [
     { title: "Add Tutor", href: "/add-tutor", icon: PlusCircleIcon },
     { title: "My Tutors", href: "/my-tutors", icon: BookmarkIcon },
-    { title: "My Booked Sessions", href: "/booked-sessions", icon: CalendarDaysIcon },
-  ]
+    {
+      title: "My Booked Sessions",
+      href: "/booked-sessions",
+      icon: CalendarDaysIcon,
+    },
+  ];
 
   const mobileItems = [
     ...navItems,
     ...(isLoggedIn ? authItems.slice(0, 2) : []),
-  ]
+  ];
 
   return (
     <>
@@ -79,7 +80,6 @@ const Navbar = () => {
                 ? "bg-white text-black shadow-md"
                 : "bg-green-700 text-white"
             }`}
-            
           >
             {navItems.map((item) => (
               <Link
@@ -183,6 +183,6 @@ const Navbar = () => {
       </nav>
     </>
   );
-}
+};
 
 export default Navbar;
