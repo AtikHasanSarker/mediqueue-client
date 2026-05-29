@@ -13,7 +13,7 @@ export default function Hero() {
     "https://randomuser.me/api/portraits/women/65.jpg",
   ];
   return (
-    <section className="pt-10 w-full relative overflow-hidden bg-[#0D6F58] min-h-screen flex items-center">
+    <section className="pt-10 w-full relative overflow-hidden bg-[#0D6F58] max-h-screen flex items-center">
       <div className="max-w-6xl mx-auto px-5 grid lg:grid-cols-2 items-center gap-20 relative">
         {/* Left Content */}
         <div>

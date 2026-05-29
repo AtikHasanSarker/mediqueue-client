@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import logo from "@/assets/logo.png"
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -21,6 +22,7 @@ import {
   UserIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -60,33 +62,25 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="border-b border-border bg-background/95 backdrop-blur-xl sticky top-0 z-20">
+      <header
+        className={` backdrop-blur-xl sticky top-0 z-50 ${
+          scrolled ? "bg-white text-black shadow-md" : "bg-[#0D6F58] text-white"
+        }`}
+      >
         <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
           <Link href="/" className="inline-flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm">
-              MQ
-            </div>
-            <div className="hidden flex-col leading-tight sm:flex">
-              <span className="text-lg font-semibold">MediQueue</span>
-              <span className="text-xs text-muted-foreground">
-                Tutor booking made simple
-              </span>
-            </div>
+            <Image src={logo} alt="logo" width={200} height={50} />
           </Link>
 
-          <nav
-            className={`hidden items-center gap-3 md:flexfixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-              scrolled
-                ? "bg-white text-black shadow-md"
-                : "bg-green-700 text-white"
-            }`}
-          >
+          <nav className={`hidden items-center gap-6 md:flex`}>
             {navItems.map((item) => (
               <Link
                 key={item.title}
                 href={item.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                className="flex gap-2 items-center font-medium transition-colors hover:text-teal-400"
               >
+                {" "}
+                {<item.icon />}
                 {item.title}
               </Link>
             ))}
@@ -96,7 +90,7 @@ const Navbar = () => {
                 <Link
                   key={item.title}
                   href={item.href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="font-medium transition-colors hover:text-foreground"
                 >
                   {item.title}
                 </Link>
@@ -107,12 +101,12 @@ const Navbar = () => {
             {!isLoggedIn ? (
               <div className="hidden items-center gap-2 md:flex">
                 <Link href="/login" passHref>
-                  <Button asChild variant="ghost" size="sm">
+                  <Button className="rounded-full px-6 py-5 hover:bg-teal-500 hover:cursor-pointer">
                     <span>Login</span>
                   </Button>
                 </Link>
                 <Link href="/register" passHref>
-                  <Button asChild size="sm">
+                  <Button className="rounded-full px-4 py-5 hover:bg-teal-500 hover:cursor-pointer">
                     <span>Register</span>
                   </Button>
                 </Link>
