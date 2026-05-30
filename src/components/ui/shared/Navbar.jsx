@@ -1,5 +1,6 @@
 "use client";
 
+
 import Link from "next/link";
 import logo from "@/assets/logo.png"
 import { Button } from "@/components/ui/button";
@@ -63,12 +64,14 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={` backdrop-blur-xl sticky top-0 z-50 ${
-          scrolled ? "bg-white text-black shadow-md" : "bg-[#0D6F58] text-white"
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-white text-black shadow-md backdrop-blur-xl "
+            : "bg-transparent text-white absolute top-0 "
         }`}
       >
-        <div className="mx-auto flex w-full max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
-          <Link href="/" className="inline-flex items-center gap-3">
+        <div className=" flex max-w-7xl mx-auto items-center justify-between gap-4 px-4 py-3 sm:px-6">
+          <Link href="/">
             <Image src={logo} alt="logo" width={200} height={50} />
           </Link>
 

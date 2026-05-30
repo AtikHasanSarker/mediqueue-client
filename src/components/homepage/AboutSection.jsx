@@ -1,3 +1,4 @@
+'use client'
 import { ArrowRight, Target, Eye } from "lucide-react";
 import student1 from "@/assets/student-1.png";
 import student2 from "@/assets/student-2.jpg";
@@ -10,29 +11,26 @@ import {
   FaMapMarkerAlt,
   FaRegThumbsUp,
 } from "react-icons/fa";
+import CountUp from "react-countup";
 
 const AboutSection = () => {
   const stats = [
     {
       icon: <FaHandshake size={40} />,
-      value: "10K",
+      value: "250",
       label: "Successful Sessions",
     },
     {
       icon: <FaUserTie size={40} />,
-      value: "9K+",
+      value: "120",
       label: "Expert Mentors",
     },
     {
       icon: <FaMapMarkerAlt size={40} />,
-      value: "12+",
+      value: "12",
       label: "Countries Served",
     },
-    {
-      icon: <FaRegThumbsUp size={40} />,
-      value: "98%",
-      label: "Satisfaction Score",
-    },
+    
   ];
   return (
     <section className="max-w-6xl mx-auto px-5 py-24">
@@ -185,12 +183,31 @@ const AboutSection = () => {
 
               <div>
                 <h2 className="text-5xl font-bold text-gray-900">
-                  {item.value}
+                  <CountUp
+                    end={item.value}
+                    duration={3}
+                    enableScrollSpy
+                    scrollSpyOnce
+                  />
+                  +
                 </h2>
                 <p className="text-gray-600 mt-1">{item.label}</p>
               </div>
             </div>
           ))}
+
+          <div className="flex items-center justify-center gap-4 px-6 md:border-l border-emerald-400">
+            <div className="text-emerald-500 ">
+              <FaRegThumbsUp size={40} />
+            </div>
+
+            <div>
+              <h2 className="text-5xl font-bold text-gray-900">
+                <CountUp end={98} duration={3} enableScrollSpy scrollSpyOnce />%
+              </h2>
+              <p className="text-gray-600 mt-1">Satisfaction Score</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
