@@ -24,8 +24,10 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -65,7 +67,7 @@ const Navbar = () => {
     <>
       <header
         className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled
+          scrolled 
             ? "bg-white text-black shadow-md backdrop-blur-xl "
             : "bg-transparent text-white absolute top-0 "
         }`}
@@ -104,12 +106,18 @@ const Navbar = () => {
             {!isLoggedIn ? (
               <div className="hidden items-center gap-2 md:flex">
                 <Link href="/login" passHref>
-                  <Button className="rounded-full px-6 py-5 hover:bg-teal-500 hover:cursor-pointer">
+                  <Button
+                    size="xl"
+                    className="px-6 py-5 hover:bg-teal-500"
+                  >
                     <span>Login</span>
                   </Button>
                 </Link>
                 <Link href="/register" passHref>
-                  <Button className="rounded-full px-4 py-5 hover:bg-teal-500 hover:cursor-pointer">
+                  <Button
+                    size="xl"
+                    className="hover:bg-teal-500"
+                  >
                     <span>Register</span>
                   </Button>
                 </Link>
