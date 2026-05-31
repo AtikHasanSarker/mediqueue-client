@@ -19,11 +19,11 @@ const Footer = () => {
       className="bg-cover bg-center bg-no-repeat text-white/70"
     >
       <div className="max-w-6xl mx-auto px-5 py-16">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
-          <div>
+          <div className="col-span-2">
             <Link href="/">
-              <Image src={logo} alt="logo" width={200} height={50} />
+              <Image src={logo} alt="logo" width={400} height={100} />
             </Link>
 
             <p className="mt-4 text-sm leading-relaxed">
@@ -33,36 +33,36 @@ const Footer = () => {
           </div>
 
           {/* Learning Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Learning Services</h3>
+          <div className="col-span-1">
+            <h3 className="text-lg font-semibold mb-4 text-white">Learning Services</h3>
 
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-sm ">
               <li>
-                <a href="#" className="hover:text-primary transition">
+                <a href="#" className="hover:text-white transition">
                   Find a Tutor
                 </a>
               </li>
 
               <li>
-                <a href="#" className="hover:text-primary transition">
+                <a href="#" className="hover:text-white transition">
                   Online Classes
                 </a>
               </li>
 
               <li>
-                <a href="#" className="hover:text-primary transition">
+                <a href="#" className="hover:text-white transition">
                   Home Tutoring
                 </a>
               </li>
 
               <li>
-                <a href="#" className="hover:text-primary transition">
+                <a href="#" className="hover:text-white transition">
                   Exam Preparation
                 </a>
               </li>
 
               <li>
-                <a href="#" className="hover:text-primary transition">
+                <a href="#" className="hover:text-white transition">
                   Skill Development
                 </a>
               </li>
@@ -70,10 +70,10 @@ const Footer = () => {
           </div>
 
           {/* Contact Information */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+          <div className="col-span-1">
+            <h3 className="text-lg font-semibold mb-4 text-white">Contact Us</h3>
 
-            <ul className="space-y-3 text-sm">
+            <ul className="space-y-3 text-sm ">
               <li>📍 Dhaka, Bangladesh</li>
               <li>📞 +880 1234-567890</li>
               <li>✉️ support@tutorhub.com</li>
@@ -82,34 +82,34 @@ const Footer = () => {
           </div>
 
           {/* Social Links */}
-          <div>
+          <div className="col-span-1">
             <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
 
             <div className="flex gap-3">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:text-white transition-all duration-300"
               >
                 <FaFacebookF />
               </a>
 
               <a
                 href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:text-white transition-all duration-300"
               >
                 <FaInstagram />
               </a>
 
               <a
                 href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:text-white transition-all duration-300"
               >
                 <FaLinkedinIn />
               </a>
 
               <a
                 href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:text-white transition-all duration-300"
               >
                 <FaYoutube />
               </a>
