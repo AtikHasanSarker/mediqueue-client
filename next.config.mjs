@@ -7,9 +7,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "**",
-       
       },
     ],
+  },
+  experimental: {
+    serverComponentsExternalPackages: ["@better-auth/kysely-adapter"],
   },
 };
 

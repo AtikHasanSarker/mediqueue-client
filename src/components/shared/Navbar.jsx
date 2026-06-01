@@ -1,18 +1,9 @@
 "use client";
-
-
 import Link from "next/link";
-import logo from "@/assets/logo.png"
-import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownMenuLabel,
-} from "@/components/ui/dropdown-menu";
+import logo from "@/assets/logo.png";
+import { Avatar, Button, Dropdown, Label } from "@heroui/react";
+import { AiOutlineUser } from "react-icons/ai";
+
 import {
   HomeIcon,
   UsersIcon,
@@ -20,28 +11,47 @@ import {
   BookmarkIcon,
   CalendarDaysIcon,
   LogInIcon,
-  UserIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
+import { MdLogout } from "react-icons/md";
 
 const Navbar = () => {
+  const router = useRouter();
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+  console.log("Current user:", user);
+   const isLoggedIn = !!user; 
+
+  const handleLogout = async () => {
+    await authClient.signOut();
+    router.refresh();
+  };
   const pathname = usePathname();
+  const isHome = pathname === "/";
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (!isHome) {
+      setScrolled(false);
+      return;
+    }
+
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-  const isLoggedIn = false; // Replace with real auth state in your app
+  }, [isHome]);
+
+
 
   const navItems = [
     { title: "Home", href: "/", icon: HomeIcon },
@@ -66,10 +76,10 @@ const Navbar = () => {
   return (
     <>
       <header
-        className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-          scrolled 
-            ? "bg-white text-black shadow-md backdrop-blur-xl "
-            : "bg-transparent text-white absolute top-0 "
+        className={`w-full z-50 transition-all duration-300 ${
+          isHome && !scrolled
+            ? "absolute top-0 bg-transparent text-white"
+            : "fixed top-0 bg-white text-black shadow-md backdrop-blur-xl"
         }`}
       >
         <div className=" flex max-w-7xl mx-auto items-center justify-between gap-4 px-4 py-3 sm:px-6">
@@ -82,7 +92,7 @@ const Navbar = () => {
               <Link
                 key={item.title}
                 href={item.href}
-                className="flex gap-2 items-center font-medium transition-colors hover:text-teal-400"
+                className="flex gap-2 items-center font-medium transition-colors hover:text-[#0d8a6c]"
               >
                 {" "}
                 {<item.icon />}
@@ -95,7 +105,7 @@ const Navbar = () => {
                 <Link
                   key={item.title}
                   href={item.href}
-                  className="font-medium transition-colors hover:text-foreground"
+                  className="font-medium transition-colors hover:text-[#0d8a6c]"
                 >
                   {item.title}
                 </Link>
@@ -103,49 +113,65 @@ const Navbar = () => {
           </nav>
 
           <div className="flex items-center gap-2">
-            {!isLoggedIn ? (
+            {user ? (
+              <>
+                <p className="hidden md:block font-medium mr-3">
+                  Hello, {user.name.split(" ")[0]}
+                </p>
+                <Dropdown>
+                  <Button aria-label="Menu" className="w-fit p-0">
+                    <Avatar>
+                      <Avatar.Image
+                        referrerPolicy="no-referrer"
+                        alt={user?.name}
+                        src={user?.image}
+                      />
+                      <Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
+                    </Avatar>
+                  </Button>
+
+                  <Dropdown.Popover>
+                    <Dropdown.Menu
+                      onAction={(key) => console.log(`Selected: ${key}`)}
+                    >
+                      <Dropdown.Item
+                        id="profile"
+                        onClick={() => router.push("/profile")}
+                        textValue="Profile"
+                      >
+                        <Label className="cursor-pointer flex gap-2 items-center font-semibold">
+                          {" "}
+                          <AiOutlineUser />
+                          Profile
+                        </Label>
+                      </Dropdown.Item>
+
+                      <Dropdown.Item id="logout" onClick={handleLogout} textValue="Logout">
+                        <Label className="text-red-600 cursor-pointer flex gap-2 items-center font-semibold">
+                          <MdLogout />
+                          Logout
+                        </Label>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown.Popover>
+                </Dropdown>
+              </>
+            ) : (
               <div className="hidden items-center gap-2 md:flex">
                 <Link href="/login" passHref>
                   <Button
                     size="xl"
-                    className="px-6 py-5 hover:bg-teal-500"
+                    className="bg-black px-6 py-5 hover:bg-[#0d8a6c]"
                   >
                     <span>Login</span>
                   </Button>
                 </Link>
                 <Link href="/register" passHref>
-                  <Button
-                    size="xl"
-                    className="hover:bg-teal-500"
-                  >
+                  <Button size="xl" className="bg-black hover:bg-[#0d8a6c]">
                     <span>Register</span>
                   </Button>
                 </Link>
               </div>
-            ) : (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-full p-0"
-                  >
-                    <Avatar>
-                      <AvatarFallback>JD</AvatarFallback>
-                    </Avatar>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-56">
-                  <DropdownMenuLabel>Signed in as Jane Doe</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem asChild>
-                    <Link href="/profile">Profile</Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/logout">Logout</Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
             )}
           </div>
         </div>
@@ -176,13 +202,14 @@ const Navbar = () => {
               <span>Login</span>
             </Link>
           ) : (
-            <Link
-              href="/profile"
-              className="inline-flex flex-1 flex-col items-center gap-1 rounded-xl px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-            >
-              <UserIcon className="h-5 w-5" />
-              <span>Profile</span>
-            </Link>
+            <Avatar>
+              <Avatar.Image
+                referrerPolicy="no-referrer"
+                alt={user?.name}
+                src={user?.image}
+              />
+              <Avatar.Fallback>{user.name[0]}</Avatar.Fallback>
+            </Avatar>
           )}
         </div>
       </nav>

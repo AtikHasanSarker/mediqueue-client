@@ -1,68 +1,61 @@
-'use client'
-import Autoplay from "embla-carousel-autoplay";
+"use client";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import HeroBanner1 from "./HeroBanner1";
 import HeroBanner2 from "./HeroBanner2";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { useEffect, useState } from "react";
 
 export default function Hero() {
-  const [api, setApi] = useState();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
+  const slides = [<HeroBanner1 key="hero-1" />, <HeroBanner2 key="hero-2" />];
 
-  useEffect(() => {
-    if (!api) return;
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap());
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
-    });
-  }, [api]);
   return (
     <section className="w-full relative overflow-hidden">
-      <Carousel
-        setApi={setApi}
-        plugins={[
-          Autoplay({
-            delay: 3000,
-          }),
-        ]}
-        opts={{
-          loop: true,
-        }}
-        className="w-full"
+      <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        loop={true}
+        speed={1000}
+        autoplay={{ delay: 2000, disableOnInteraction: false }}
+        navigation={true}
+        pagination={{ clickable: true }}
+        grabCursor={true}
+        slidesPerView={1}
+        spaceBetween={0}
+        className="relative hero-swiper"
       >
-        <CarouselContent>
-          <CarouselItem className="pl-0 basis-full">
-            <HeroBanner1 />
-          </CarouselItem>
-
-          <CarouselItem className="pl-0 basis-full">
-            <HeroBanner2 />
-          </CarouselItem>
-        </CarouselContent>
-        <CarouselPrevious className="left-4 z-50 bg-white text-black border" />
-        <CarouselNext className="right-4 z-50 bg-white text-black border" />
-      </Carousel>
-      <div className="flex justify-center gap-2 mt-6">
-        {Array.from({ length: count }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => api?.scrollTo(index)}
-            className={`h-3 w-3 rounded-full transition-all duration-300 ${
-              current === index ? "bg-yellow-400 w-8" : "bg-black"
-            }`}
-          />
+        {slides.map((slide, index) => (
+          <SwiperSlide key={index} className="h-full">
+            {slide}
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
+      <style jsx global>{`
+        .hero-swiper .swiper-button-next,
+        .hero-swiper .swiper-button-prev {
+          color: white !important;
+        }
+
+        .hero-swiper .swiper-button-next::after,
+        .hero-swiper .swiper-button-prev::after {
+          color: white !important;
+          font-size: 1.25rem;
+        }
+
+        .hero-swiper .swiper-pagination-bullet {
+          background: rgba(255, 255, 255, 0.5) !important;
+          opacity: 1 !important;
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+
+        .hero-swiper .swiper-pagination-bullet-active {
+          background: white !important;
+          width: 1rem;
+          height: 1rem;
+        }
+      `}</style>
     </section>
   );
 }

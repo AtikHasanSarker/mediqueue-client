@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button, Card, CardContent } from "@heroui/react";
+import { MdOutlineBookmarks } from "react-icons/md";
+
 
 const TutorDetailPage = async ({ params }) => {
   const { id } = await params;
@@ -21,21 +22,21 @@ const TutorDetailPage = async ({ params }) => {
   } = tutor;
 
   return (
-    <div>
-      <Card className="overflow-hidden p-6 grid grid-cols-1 gap-6 md:grid-cols-2 rounded-3xl border-0 shadow-lg hover:shadow-xl transition-all duration-300">
-        <div className="relative h-56 w-full">
+    <div className="pt-40 pb-20 max-w-6xl mx-auto px-6">
+      <Card className="border overflow-hidden p-6 grid grid-cols-1 gap-4 md:grid-cols-2 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300">
+        <div className="relative h-130 w-full">
           <Image
             width={400}
             height={100}
             src={photoURL}
             alt="Event cover"
-            className="h-80 w-full object-cover object-top"
+            className="h-full w-full object-cover object-top rounded-2xl"
           />
         </div>
 
-        <CardContent className="p-5">
-          <h3 className="text-3xl font-bold">{name}</h3>
-          <p className="text-muted-foreground">{subject}</p>
+        <CardContent className="p-5 space-y-2">
+          <h3 className="text-3xl md:text-4xl font-bold">{name}</h3>
+          <p className="text-[#0d8a6c] font-semibold text-xl">{subject}</p>
           <p>
             <span className="font-semibold">Institution:</span> {institution}
           </p>
@@ -54,18 +55,20 @@ const TutorDetailPage = async ({ params }) => {
             {availableDays}
           </p>
           <p>
-            <span className="font-semibold">Hourly Fee:</span> ৳{hourlyFee}/hr
-          </p>
-          <p>
-            <span className="font-semibold">Remaining Slots:</span>{" "}
-            {totalSlot}
+            <span className="font-semibold">Remaining Slots:</span> {totalSlot}
           </p>
           <p>
             <span className="font-semibold">Session Start Date:</span>{" "}
             {sessionStartDate}
           </p>
+          <p>
+            <span className="font-semibold">Hourly Fee:</span>{" "}
+            <span className="text-[#0d8a6c] font-bold">৳{hourlyFee}/hr</span>
+          </p>
 
-          <Button variant="ghost">Book Session</Button>
+          <Button className="mt-4 bg-[#0d8a6c] hover:bg-[#0a6b52] py-6 font-semibold">
+            Book Session <MdOutlineBookmarks />
+          </Button>
         </CardContent>
       </Card>
     </div>
