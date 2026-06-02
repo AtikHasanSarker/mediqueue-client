@@ -11,214 +11,225 @@ import {
   TextField,
   Modal,
   Surface,
+  Form,
 } from "@heroui/react";
-import { redirect, useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { FaEdit } from "react-icons/fa";
-import { VscSaveAs } from "react-icons/vsc";
 
-export function EditNodal({ destination }) {
-  const router = useRouter();
+export function EditNodal({ tutor }) {
   const {
-    _id,
-    category,
-    image,
-    price,
-    duration,
-    country,
-    destinationName,
-    departureDate,
-    description,
-  } = destination;
+    name,
+    photoURL,
+    sessionStartDate,
+    hourlyFee,
+    availableDays,
+    subject,
+    institution,
+    location,
+    teachingMode,
+    totalSlot,
+    experience,
+  } = tutor;
 
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const destination = Object.fromEntries(formData.entries());
-    console.log("destination details:", destination);
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/destinations/${_id}`,
-      {
-        method: "PATCH",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(destination),
+    const tutorData = Object.fromEntries(formData.entries());
+    const res = await fetch(`http://localhost:5000/my-tutors/${tutor._id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
       },
-    );
+      body: JSON.stringify(tutorData),
+    });
     const data = await res.json();
     if (data.modifiedCount > 0) {
-      router.refresh();
+      window.location.reload()
+      toast.success("Updated Tutor Details Successfully!")
+    }else{
+      toast.error("Update Failed!")
     }
     console.log(data);
   };
   return (
     <Modal>
-      <Button variant="secondary">
+      <Button variant="secondary" className="text-green-600">
         <FaEdit />
         Edit
       </Button>
       <Modal.Backdrop>
         <Modal.Container placement="auto">
-          <Modal.Dialog className="sm:max-w-lg">
+          <Modal.Dialog className="sm:max-w-md">
+            <h2 className="text-2xl font-semibold mb-6">
+              Update Tutor Information
+            </h2>
             <Modal.CloseTrigger />
             <Modal.Header>
-              <Modal.Heading>Update Destination</Modal.Heading>
+              <Modal.Heading>
+                Update tutor details and save changes.
+              </Modal.Heading>
             </Modal.Header>
-            <Modal.Body className="p-6">
+            <Modal.Body className="p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
               <Surface variant="default">
-                <form onSubmit={onSubmit} className="space-y-8">
+                <Form onSubmit={onSubmit} className="space-y-10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Destination Name */}
-                    <div className="md:col-span-2">
-                      <TextField
-                        name="destinationName"
-                        defaultValue={destinationName}
-                        isRequired
-                      >
-                        <Label>Destination Name</Label>
-                        <Input
-                          placeholder="Bali Paradise"
-                          className="rounded-2xl"
-                        />
-                        <FieldError />
-                      </TextField>
-                    </div>
-
-                    {/* Country */}
-                    <TextField name="country" defaultValue={country} isRequired>
-                      <Label>Country</Label>
-                      <Input placeholder="Indonesia" className="rounded-2xl" />
+                    <TextField
+                      name="name"
+                      defaultValue={name}
+                      validate={(value) => {
+                        if (value.length < 3) {
+                          return "Name must be at least 3 characters";
+                        }
+                        return null;
+                      }}
+                    >
+                      <Label className="font-semibold">Tutor Name</Label>
+                      <Input />
                       <FieldError />
                     </TextField>
 
-                    {/* Category - Updated Select Component */}
-                    <div>
+                    <TextField name="photoUrl" defaultValue={photoURL}>
+                      <Label className="font-semibold">Image URL</Label>
+                      <Input type="url" />
+                      <FieldError />
+                    </TextField>
+
+                    <TextField name="institution" defaultValue={institution}>
+                      <Label className="font-semibold">Institution</Label>
+                      <Input />
+                      <FieldError />
+                    </TextField>
+                    <TextField defaultValue={location} name="location">
+                      <Label className="font-semibold">
+                        Location (Area / City)
+                      </Label>
+                      <Input />
+                      <FieldError />
+                    </TextField>
+
+                    <TextField defaultValue={subject} name="subject">
+                      <Label className="font-semibold">
+                        Subject / Category
+                      </Label>
                       <Select
-                        name="category"
-                        isRequired
-                        className="w-full"
-                        placeholder="Select category"
-                        defaultValue={category}
+                        defaultValue={subject}
+                        label="Subject"
+                        name="subject"
                       >
-                        <Label>Category</Label>
-                        <Select.Trigger className="rounded-2xl">
+                        <Select.Trigger className="w-full">
                           <Select.Value />
                           <Select.Indicator />
                         </Select.Trigger>
-                        <Select.Popover>
-                          <ListBox>
-                            <ListBox.Item id="Beach" textValue="Beach">
-                              Beach
-                              <ListBox.ItemIndicator />
+                        <Select.Popover className="max-w-xl">
+                          <ListBox className="max-h-56 w-full overflow-auto rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-lg">
+                            <ListBox.Item id="Math">Math</ListBox.Item>
+                            <ListBox.Item id="Physics">Physics</ListBox.Item>
+                            <ListBox.Item id="Chemistry">
+                              Chemistry
                             </ListBox.Item>
-                            <ListBox.Item id="Mountain" textValue="Mountain">
-                              Mountain
-                              <ListBox.ItemIndicator />
-                            </ListBox.Item>
-                            <ListBox.Item id="City" textValue="City">
-                              City
-                              <ListBox.ItemIndicator />
-                            </ListBox.Item>
-                            <ListBox.Item id="Adventure" textValue="Adventure">
-                              Adventure
-                              <ListBox.ItemIndicator />
-                            </ListBox.Item>
-                            <ListBox.Item id="Cultural" textValue="Cultural">
-                              Cultural
-                              <ListBox.ItemIndicator />
-                            </ListBox.Item>
-                            <ListBox.Item id="Luxury" textValue="Luxury">
-                              Luxury
-                              <ListBox.ItemIndicator />
-                            </ListBox.Item>
+                            <ListBox.Item id="Biology">Biology</ListBox.Item>
+                            <ListBox.Item id="English">English</ListBox.Item>
+                            <ListBox.Item id="ICT">ICT</ListBox.Item>
                           </ListBox>
                         </Select.Popover>
                       </Select>
-                    </div>
+                      <FieldError />
+                    </TextField>
 
-                    {/* Price */}
+                    <TextField name="teachingMode" defaultValue={teachingMode}>
+                      <Label className="font-semibold">Teaching Mode</Label>
+
+                      <Select
+                        defaultValue={teachingMode}
+                        label="Teaching Mode"
+                        name="teachingMode"
+                      >
+                        <Select.Trigger className="w-full">
+                          <Select.Value />
+                          <Select.Indicator />
+                        </Select.Trigger>
+                        <Select.Popover className="max-w-xl">
+                          <ListBox className="max-h-56 w-full overflow-auto rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-lg">
+                            <ListBox.Item id="Online">Online</ListBox.Item>
+                            <ListBox.Item id="Offline">Offline</ListBox.Item>
+                            <ListBox.Item id="Both">Both</ListBox.Item>
+                          </ListBox>
+                        </Select.Popover>
+                      </Select>
+                      <FieldError />
+                    </TextField>
+
                     <TextField
-                      name="price"
-                      type="number"
-                      defaultValue={price}
-                      isRequired
+                      defaultValue={availableDays}
+                      name="availableDays"
                     >
-                      <Label>Price (USD)</Label>
+                      <Label className="font-semibold">
+                        Available Days & Time
+                      </Label>
                       <Input
-                        type="number"
-                        placeholder="1299"
-                        className="rounded-2xl"
+                        name="availableDays"
+                        label="Available Days & Time"
                       />
                       <FieldError />
                     </TextField>
 
-                    {/* Duration */}
                     <TextField
-                      name="duration"
-                      defaultValue={duration}
-                      isRequired
+                      defaultValue={sessionStartDate}
+                      name="sessionStartDate"
                     >
-                      <Label>Duration</Label>
+                      <Label className="font-semibold">
+                        Session Start Date
+                      </Label>
                       <Input
-                        placeholder="7 Days / 6 Nights"
-                        className="rounded-2xl"
-                      />
-                      <FieldError />
-                    </TextField>
-
-                    {/* Departure Date */}
-                    <div className="md:col-span-2">
-                      <TextField
-                        name="departureDate"
-                        defaultValue={departureDate}
                         type="date"
-                        isRequired
-                      >
-                        <Label>Departure Date</Label>
-                        <Input type="date" className="rounded-2xl" />
-                        <FieldError />
-                      </TextField>
-                    </div>
+                        name="sessionStartDate"
+                        label="Session Start Date"
+                        className="md:col-span-2"
+                      />
+                      <FieldError />
+                    </TextField>
 
-                    {/* Image URL - Removed preview */}
-                    <div className="md:col-span-2">
-                      <TextField
-                        name="imageUrl"
-                        defaultValue={image}
-                        isRequired
-                      >
-                        <Label>Image URL</Label>
-                        <Input
-                          type="url"
-                          placeholder="https://example.com/bali-paradise.jpg"
-                          className="rounded-2xl"
-                        />
-                        <FieldError />
-                      </TextField>
-                    </div>
+                    <TextField defaultValue={experience} name="experience">
+                      <Label className="font-semibold">Experience</Label>
+                      <TextArea
+                        name="experience"
+                        label="Experience"
+                        placeholder="3 years of teaching experience..."
+                      />
+                      <FieldError />
+                    </TextField>
 
-                    {/* Description */}
-                    <div className="md:col-span-2">
-                      <TextField
-                        name="description"
-                        defaultValue={description}
-                        isRequired
-                      >
-                        <Label>Description</Label>
-                        <TextArea
-                          placeholder="Describe the travel experience..."
-                          className="rounded-3xl"
-                        />
-                        <FieldError />
-                      </TextField>
-                    </div>
+                    <TextField defaultValue={hourlyFee} name="hourlyFee">
+                      <Label className="font-semibold">Hourly Fee (৳)</Label>
+                      <Input
+                        name="hourlyFee"
+                        type="number"
+                        label="Hourly Fee (৳)"
+                        placeholder="e.g. 500"
+                      />
+                      <FieldError />
+                    </TextField>
+
+                    <TextField defaultValue={totalSlot} name="totalSlots">
+                      <Label className="font-semibold">Total Slots</Label>
+                      <Input
+                        name="totalSlots"
+                        type="number"
+                        label="Total Slots"
+                        placeholder="e.g. 20"
+                      />
+                      <FieldError />
+                    </TextField>
                   </div>
-                  <div className="flex justify-end">
-                    <Button type="submit" slot="close" className="bg-cyan-500">
-                      <VscSaveAs /> Save Changes
+                  <Modal.Footer>
+                    <Button variant="outline" slot="close">
+                      Cancel
                     </Button>
-                  </div>
-                </form>
+                    <Button slot="close" type="submit" className="bg-[#0d8a6c]">
+                      Update Tutor
+                    </Button>
+                  </Modal.Footer>
+                </Form>
               </Surface>
             </Modal.Body>
           </Modal.Dialog>

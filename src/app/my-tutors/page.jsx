@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { Button, Table } from "@heroui/react";
 import DeleteModal from "@/components/DeleteModal";
+import { EditNodal } from "@/components/EditModal";
 
 const MyTutorsPage = () => {
   const { data: session } = authClient.useSession();
@@ -43,13 +44,13 @@ const MyTutorsPage = () => {
                 <Table.Body>
                   {tutors.map((tutor) => (
                     <Table.Row key={tutor._id}>
-                      <Table.Cell>{tutor.tutorName}</Table.Cell>
+                      <Table.Cell>{tutor.name}</Table.Cell>
                       <Table.Cell>{tutor.subject}</Table.Cell>
                       <Table.Cell>{tutor.hourlyFee}</Table.Cell>
-                      <Table.Cell>{tutor.totalSlots}</Table.Cell>
+                      <Table.Cell>{tutor.totalSlot}</Table.Cell>
                       <Table.Cell>{tutor.sessionStartDate}</Table.Cell>
-                      <Table.Cell>
-                        <Button className="bg-emerald-600">Edit</Button>
+                      <Table.Cell className="flex gap-2">
+                        <EditNodal tutor={tutor} />
                         <DeleteModal tutor={tutor} />
                       </Table.Cell>
                     </Table.Row>

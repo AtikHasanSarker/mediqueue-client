@@ -1,35 +1,44 @@
 "use client";
 
 import React from "react";
-import { Button, Input, TextArea, Select, ListBox, TextField, Label, FieldError, Form } from "@heroui/react";
+import {
+  Button,
+  Input,
+  TextArea,
+  Select,
+  ListBox,
+  TextField,
+  Label,
+  FieldError,
+  Form,
+} from "@heroui/react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 const AddTutorPage = () => {
   const { data: session } = authClient.useSession();
-    const user = session?.user;
-  
-    const onSubmit = async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.currentTarget);
-      const tutorData = Object.fromEntries(formData.entries());
-      tutorData.userId = user.id; 
+  const user = session?.user;
 
-      const res = await fetch("http://localhost:5000/tutors", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(tutorData),
-      });
-      const data = await res.json();
-      if (data.acknowledged) {
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const tutorData = Object.fromEntries(formData.entries());
+    tutorData.userId = user?.id;
+    console.log("tutorData from add-tutor page: ", tutorData);
 
-        toast.success("Tutor added successfully!");
-        window.location.reload();
-      }
-    };
-
+    const res = await fetch("http://localhost:5000/tutors", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(tutorData),
+    });
+    const data = await res.json();
+    if (data.acknowledged) {
+      toast.success("Tutor added successfully!");
+      // window.location.reload();
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto py-30 px-6">
@@ -50,7 +59,7 @@ const AddTutorPage = () => {
         <Form onSubmit={onSubmit} className="space-y-10">
           <div className=" grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-10">
-            {/* PERSONAL INFORMATION */}
+              {/* PERSONAL INFORMATION */}
               <div>
                 <h3 className="text-sm font-semibold uppercase tracking-wider text-green-600 border-b pb-3 mb-6">
                   Personal Information
@@ -58,7 +67,7 @@ const AddTutorPage = () => {
                 <div className="space-y-6">
                   <TextField
                     required
-                    name="tutorName"
+                    name="name"
                     validate={(value) => {
                       if (value.length < 3) {
                         return "Name must be at least 3 characters";
@@ -71,7 +80,7 @@ const AddTutorPage = () => {
                     <FieldError />
                   </TextField>
 
-                  <TextField name="imageUrl" required>
+                  <TextField name="photoURL" required>
                     <Label className="font-semibold">Image URL</Label>
                     <Input
                       type="url"
@@ -105,23 +114,19 @@ const AddTutorPage = () => {
                   <TextField required name="hourlyFee">
                     <Label className="font-semibold">Hourly Fee (৳)</Label>
                     <Input
-                      name="hourlyFee"
                       type="number"
                       label="Hourly Fee (৳)"
                       placeholder="e.g. 500"
-                      required
                     />
                     <FieldError />
                   </TextField>
 
-                  <TextField required name="totalSlots">
+                  <TextField required name="totalSlot">
                     <Label className="font-semibold">Total Slots</Label>
                     <Input
-                      name="totalSlots"
                       type="number"
                       label="Total Slots"
                       placeholder="e.g. 20"
-                      required
                     />
                     <FieldError />
                   </TextField>
@@ -138,19 +143,19 @@ const AddTutorPage = () => {
               <div className="space-y-6">
                 <TextField required name="subject">
                   <Label className="font-semibold">Subject / Category</Label>
-                  <Select label="Subject" name="subject" required>
+                  <Select label="subject" name="subject">
                     <Select.Trigger className="w-full">
                       <Select.Value placeholder="Select a subject" />
                       <Select.Indicator />
                     </Select.Trigger>
                     <Select.Popover className="max-w-xl">
                       <ListBox className="max-h-56 w-full overflow-auto rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-lg">
-                        <ListBox.Item value="Math">Math</ListBox.Item>
-                        <ListBox.Item value="Physics">Physics</ListBox.Item>
-                        <ListBox.Item value="Chemistry">Chemistry</ListBox.Item>
-                        <ListBox.Item value="Biology">Biology</ListBox.Item>
-                        <ListBox.Item value="English">English</ListBox.Item>
-                        <ListBox.Item value="ICT">ICT</ListBox.Item>
+                        <ListBox.Item id="Math">Math</ListBox.Item>
+                        <ListBox.Item id="Physics">Physics</ListBox.Item>
+                        <ListBox.Item id="Chemistry">Chemistry</ListBox.Item>
+                        <ListBox.Item id="Biology">Biology</ListBox.Item>
+                        <ListBox.Item id="English">English</ListBox.Item>
+                        <ListBox.Item id="ICT">ICT</ListBox.Item>
                       </ListBox>
                     </Select.Popover>
                   </Select>
@@ -160,16 +165,16 @@ const AddTutorPage = () => {
                 <TextField required name="teachingMode">
                   <Label className="font-semibold">Teaching Mode</Label>
 
-                  <Select label="Teaching Mode" name="teachingMode" required>
+                  <Select label="Teaching Mode" name="teachingMode">
                     <Select.Trigger className="w-full">
                       <Select.Value placeholder="Select a Mode" />
                       <Select.Indicator />
                     </Select.Trigger>
                     <Select.Popover className="max-w-xl">
                       <ListBox className="max-h-56 w-full overflow-auto rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-lg">
-                        <ListBox.Item value="Online">Online</ListBox.Item>
-                        <ListBox.Item value="Offline">Offline</ListBox.Item>
-                        <ListBox.Item value="Both">Both</ListBox.Item>
+                        <ListBox.Item id="Online">Online</ListBox.Item>
+                        <ListBox.Item id="Offline">Offline</ListBox.Item>
+                        <ListBox.Item id="Both">Both</ListBox.Item>
                       </ListBox>
                     </Select.Popover>
                   </Select>
@@ -179,11 +184,9 @@ const AddTutorPage = () => {
                 <TextField required name="availableDays">
                   <Label className="font-semibold">Available Days & Time</Label>
                   <Input
-                    name="availableDays"
+                    
                     label="Available Days & Time"
                     placeholder="Example: Sun - Thu 5:00 PM - 8:00 PM"
-                    required
-                    required
                     className="md:col-span-2"
                   />
                   <FieldError />
@@ -193,9 +196,7 @@ const AddTutorPage = () => {
                   <Label className="font-semibold">Session Start Date</Label>
                   <Input
                     type="date"
-                    name="sessionStartDate"
                     label="Session Start Date"
-                    required
                     className="md:col-span-2"
                   />
                   <FieldError />
@@ -204,12 +205,9 @@ const AddTutorPage = () => {
                 <TextField required name="experience">
                   <Label className="font-semibold">Experience</Label>
                   <TextArea
-                    name="experience"
                     label="Experience"
                     placeholder="3 years of teaching experience..."
                     rows={5}
-                    required
-                    required
                     className="md:col-span-2"
                   />
                   <FieldError />
