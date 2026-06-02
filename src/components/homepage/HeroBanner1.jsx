@@ -5,6 +5,7 @@ import Image from "next/image";
 import tutor from "@/assets/tutor.png";
 import star from "@/assets/star.json";
 import Lottie from "lottie-react";
+import Link from "next/link";
 
 const HeroBanner1 = () => {
     const users = [
@@ -49,15 +50,19 @@ const HeroBanner1 = () => {
 
             {/* Buttons */}
             <div className="flex flex-wrap gap-5 mt-10">
-              <button className="bg-black text-white px-8 py-4 rounded-full flex items-center gap-2 font-semibold hover:scale-105 transition">
-                <Users size={20} />
-                Explore Mentors
-              </button>
+              <Link href="/tutors">
+                <button className="bg-black text-white px-8 py-4 rounded-full flex items-center gap-2 font-semibold hover:scale-105 transition">
+                  <Users size={20} />
+                  Explore Tutors
+                </button>
+              </Link>
 
-              <button className="bg-[#ffbe1b] text-black px-8 py-4 rounded-full flex items-center gap-2 font-semibold hover:scale-105 transition">
-                <CalendarDays size={20} />
-                Book a Session
-              </button>
+              <Link href="/tutors">
+                <button className="bg-[#ffbe1b] text-black px-8 py-4 rounded-full flex items-center gap-2 font-semibold hover:scale-105 transition">
+                  <CalendarDays size={20} />
+                  Book a Session
+                </button>
+              </Link>
             </div>
           </div>
           <div className="bg-white rounded-t-2xl px-5 py-3 inline-flex items-center gap-6 shadow-sm absolute bottom-0 left-20">

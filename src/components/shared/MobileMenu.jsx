@@ -12,7 +12,7 @@ import { FaHouseChimney } from "react-icons/fa6";
 import Link from "next/link";
 import { useState } from "react";
 
-const MobileMenu = ({ handleLogout }) => {
+const MobileMenu = ({ handleLogout, pathname }) => {
     const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
@@ -46,11 +46,13 @@ const MobileMenu = ({ handleLogout }) => {
                     <Link key={item.title} href={item.href}>
                       <button
                         onClick={() => setIsOpen(false)}
-                        className="w-full cursor-pointer flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default"
+                        className={`w-full cursor-pointer flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-default ${
+                          pathname === item.href ? "text-green-600" : ""
+                        }`}
                         type="button"
                       >
                         {item.icon && (
-                          <item.icon className="size-5 text-muted" />
+                          <item.icon className="size-5" />
                         )}
                         {item.title}
                       </button>

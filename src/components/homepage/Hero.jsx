@@ -7,9 +7,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import HeroBanner1 from "./HeroBanner1";
 import HeroBanner2 from "./HeroBanner2";
+import HeroBanner3 from "./HeroBanner3";
 
 export default function Hero() {
-  const slides = [<HeroBanner1 key="hero-1" />, <HeroBanner2 key="hero-2" />];
+  const slides = [<HeroBanner1 key="hero-1" />, <HeroBanner2 key="hero-2" /> , <HeroBanner3 key="hero-3" />];
 
   return (
     <section className="w-full relative overflow-hidden">

@@ -6,7 +6,7 @@ import { FaHouseChimney,} from "react-icons/fa6";
 import { FaUsers, FaCalendarAlt } from "react-icons/fa";
 
 
-const MobileNav = ({ user }) => {
+const MobileNav = ({ user, pathname }) => {
   const navItems = [
     { title: "Home", href: "/", icon: FaHouseChimney },
     { title: "Tutors", href: "/tutors", icon: FaUsers },
@@ -19,10 +19,7 @@ const MobileNav = ({ user }) => {
       icon: FaCalendarAlt,
     },
   ];
-  const mobileItems = [
-    ...navItems,
-    ...(user? authItems : []),
-  ];
+  const mobileItems = [...navItems, ...(user ? authItems : [])];
   return (
     <div>
       <nav className="fixed bottom-0 left-0 right-0 z-20 border-t border-border bg-background/95 px-1 py-2 backdrop-blur-xl md:hidden">
@@ -33,7 +30,9 @@ const MobileNav = ({ user }) => {
               <Link
                 key={item.title}
                 href={item.href}
-                className="inline-flex flex-1 flex-col items-center gap-1 rounded-xl px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                className={`inline-flex flex-1 flex-col items-center gap-1 px-2 py-1 text-xs font-medium text-muted-foreground ${
+                  pathname === item.href ? "text-green-600" : ""
+                }`}
               >
                 <Icon className="h-5 w-5" />
                 <span>{item.title}</span>

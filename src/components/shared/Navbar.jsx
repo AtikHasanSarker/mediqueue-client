@@ -4,16 +4,12 @@ import logo from "@/assets/logo.png";
 import { Avatar, Button, Dropdown, Label } from "@heroui/react";
 import { AiOutlineUser } from "react-icons/ai";
 import {
-  FaChalkboardTeacher,
   FaUsers,
   FaUserPlus,
   FaCalendarAlt,
-  FaUser,
 } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { FaHouseChimney } from "react-icons/fa6";
-
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -90,7 +86,9 @@ const Navbar = () => {
               <Link
                 key={item.title}
                 href={item.href}
-                className="flex gap-2 items-center font-medium transition-colors hover:text-[#0d8a6c]"
+                className={`flex gap-2 items-center font-medium transition-colors hover:text-[#0d8a6c] ${
+                  pathname === item.href ? "text-green-600 font-semibold" : ""
+                }`}
               >
                 {" "}
                 {<item.icon />}
@@ -103,7 +101,9 @@ const Navbar = () => {
                 <Link
                   key={item.title}
                   href={item.href}
-                  className="hidden lg:flex gap-2 items-center font-medium transition-colors hover:text-[#0d8a6c]"
+                  className={`hidden lg:flex gap-2 items-center font-medium transition-colors hover:text-[#0d8a6ded] ${
+                    pathname === item.href ? "text-green-600 font-semibold" : ""
+                  }`}
                 >
                   {<item.icon />}
                   {item.title}
@@ -162,7 +162,7 @@ const Navbar = () => {
                 </div>
                 {/* for mobile view */}
                 <div className="lg:hidden">
-                  <MobileMenu handleLogout={handleLogout} />
+                  <MobileMenu handleLogout={handleLogout} pathname={pathname} />
                 </div>
               </>
             ) : (
@@ -186,7 +186,7 @@ const Navbar = () => {
         </div>
       </header>
 
-      <MobileNav user={user} />
+      <MobileNav user={user} pathname={pathname} />
     </>
   );
 };

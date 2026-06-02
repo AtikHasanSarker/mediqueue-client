@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "name": "John Behrens",
+    "role": "Marketing Professional",
+    "image": "https://i.pravatar.cc/100?img=1",
+    "review": "I tried multiple coaching programs before, but none offered this level of personalized support."
+  },
+  {
+    "id": 2,
+    "name": "Carlos Ramirez",
+    "role": "Financial Analyst",
+    "image": "https://i.pravatar.cc/100?img=2",
+    "review": "The mentors are knowledgeable and genuinely supportive. They ensure I understand every concept."
+  },
+  {
+    "id": 3,
+    "name": "Sakura Tanaka",
+    "role": "UX Designer",
+    "image": "https://i.pravatar.cc/100?img=3",
+    "review": "I've gained actionable strategies that I could immediately apply to my work."
+  },
+  {
+    "id": 4,
+    "name": "Jamal Adebayo",
+    "role": "Project Manager",
+    "image": "https://i.pravatar.cc/100?img=4",
+    "review": "The mentors' willingness to share their expertise has significantly impacted my career."
+  },
+  {
+    "id": 5,
+    "name": "Ingrid Baumgartner",
+    "role": "Product Manager",
+    "image": "https://i.pravatar.cc/100?img=5",
+    "review": "I've seen significant improvements in my skills and confidence since joining."
+  },
+  {
+    "id": 6,
+    "name": "Elias Fischer",
+    "role": "Software Engineer",
+    "image": "https://i.pravatar.cc/100?img=6",
+    "review": "The mentors are truly invested in my success and professional growth."
+  },
+  {
+    "id": 7,
+    "name": "Sophia Martinez",
+    "role": "Data Scientist",
+    "image": "https://i.pravatar.cc/100?img=7",
+    "review": "The personalized advice and structured learning path helped me advance my career much faster than I expected."
+  },
+  {
+    "id": 8,
+    "name": "David Wilson",
+    "role": "Business Consultant",
+    "image": "https://i.pravatar.cc/100?img=8",
+    "review": "Every session was insightful and practical. I was able to implement the lessons immediately in my daily work."
+  },
+  {
+    "id": 9,
+    "name": "Emma Thompson",
+    "role": "Graphic Designer",
+    "image": "https://i.pravatar.cc/100?img=9",
+    "review": "The mentorship gave me clarity, confidence, and direction. It helped me refine both my technical and creative skills."
+  },
+  {
+    "id": 10,
+    "name": "Liam Chen",
+    "role": "Cybersecurity Specialist",
+    "image": "https://i.pravatar.cc/100?img=10",
+    "review": "I appreciated the one-on-one support and the real-world insights shared by experienced mentors throughout the program."
+  },
+  {
+    "id": 11,
+    "name": "Olivia Johnson",
+    "role": "HR Manager",
+    "image": "https://i.pravatar.cc/100?img=11",
+    "review": "The mentors provided thoughtful guidance and actionable feedback. It made a noticeable difference in my professional development."
+  },
+  {
+    "id": 12,
+    "name": "Noah Kim",
+    "role": "Frontend Developer",
+    "image": "https://i.pravatar.cc/100?img=12",
+    "review": "The community and mentorship support were outstanding. I learned industry best practices and improved my confidence as a developer."
+  }
+]

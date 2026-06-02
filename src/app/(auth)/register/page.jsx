@@ -12,21 +12,29 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const RegisterPage = () => {
+  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
-    console.log(user);
     const { data, error } = await authClient.signUp.email({
       name: user.name,
       email: user.email,
       password: user.password,
       image: user.imageUrl,
     });
-    console.log("data:", data, "error:", error);
+    if (error) {
+      toast.error("Registration failed! ");
+    } else {
+
+      toast.success("Registration successful! Please log in.");
+      router.push("/login");
+    }
   };
   const handleGoogleSignin = async () => {
     const data = await authClient.signIn.social({

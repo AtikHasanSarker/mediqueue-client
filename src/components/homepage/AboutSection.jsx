@@ -17,12 +17,12 @@ const AboutSection = () => {
   const stats = [
     {
       icon: <FaHandshake size={40} />,
-      value: "250",
+      value: "850",
       label: "Successful Sessions",
     },
     {
       icon: <FaUserTie size={40} />,
-      value: "120",
+      value: "350",
       label: "Expert Mentors",
     },
     {

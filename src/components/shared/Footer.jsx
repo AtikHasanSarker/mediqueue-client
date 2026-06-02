@@ -10,7 +10,6 @@ import Image from "next/image";
 import logo from "@/assets/logo.png";
 
 const Footer = () => {
-  console.log(footerBg);
   return (
     <footer
       style={{
@@ -76,7 +75,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm ">
               <li>📍 Dhaka, Bangladesh</li>
               <li>📞 +880 1234-567890</li>
-              <li>✉️ support@tutorhub.com</li>
+              <li>✉️ support@mediqueue.com</li>
               <li>🕒 Sat - Thu: 9AM - 9PM</li>
             </ul>
           </div>
@@ -88,28 +87,28 @@ const Footer = () => {
             <div className="flex gap-3">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 bg-white text-black transition-all duration-300"
               >
                 <FaFacebookF />
               </a>
 
               <a
                 href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 bg-white text-black transition-all duration-300"
               >
                 <FaInstagram />
               </a>
 
               <a
                 href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 bg-white text-black transition-all duration-300"
               >
                 <FaLinkedinIn />
               </a>
 
               <a
                 href="#"
-                className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-white hover:text-white transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center hover:scale-110 bg-white text-black transition-all duration-300"
               >
                 <FaYoutube />
               </a>

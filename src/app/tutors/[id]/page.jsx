@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { Button, Card, CardContent } from "@heroui/react";
-import { MdOutlineBookmarks } from "react-icons/md";
+import { Card, CardContent } from "@heroui/react";
+import BookSession from "@/components/BookSession";
 
 
 const TutorDetailPage = async ({ params }) => {
@@ -66,9 +66,7 @@ const TutorDetailPage = async ({ params }) => {
             <span className="text-[#0d8a6c] font-bold">৳{hourlyFee}/hr</span>
           </p>
 
-          <Button className="mt-4 bg-[#0d8a6c] hover:bg-[#0a6b52] py-6 font-semibold">
-            Book Session <MdOutlineBookmarks />
-          </Button>
+          <BookSession tutor={tutor} />
         </CardContent>
       </Card>
     </div>
