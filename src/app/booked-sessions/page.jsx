@@ -22,8 +22,26 @@ const MyBookedSessions = () => {
   
       fetchBookedSessions();
     }, [user?.id]);
+
+    const handleRemove = async(id) => {
+      const res = await fetch(
+        `http://localhost:5000/booked-sessions/${id}`,
+        {
+          method: "PATCH",
+          
+        },
+      );
+    const data = await res.json();
+    console.log(data)
+    if(data.modifiedCount > 0){
+      setBookedSessions((prev) =>
+        prev.map((item) =>
+          item._id === id ? { ...item, status: "Cancelled" } : item,
+        ),
+      );
+    }
+    }
   
-    console.log("bookedSessions", bookedSessions);
   
   return (
     <div className="pt-40 pb-20 text-center max-w-6xl min-h-screen mx-auto px-6">
@@ -60,13 +78,22 @@ const MyBookedSessions = () => {
                       <Table.Cell>{session.subject}</Table.Cell>
                       <Table.Cell>{session.email}</Table.Cell>
                       <Table.Cell>
-                        <Chip color="success" variant="flat">
-                          Booked
+                        <Chip
+                          color={
+                            session.status === "Booked" ? "success" : "danger"
+                          }
+                          variant="flat"
+                        >
+                          {session.status}
                         </Chip>
                       </Table.Cell>
                       <Table.Cell>
-                        <Button className="bg-emerald-600">Edit</Button>
-                        <Button variant="danger" className="ml-2">
+                        <Button
+                          isDisabled={session.status === "Cancelled"}
+                          onClick={() => handleRemove(session._id)}
+                          variant="danger-soft"
+                          className="text-red-600"
+                        >
                           Remove
                         </Button>
                       </Table.Cell>
@@ -79,7 +106,7 @@ const MyBookedSessions = () => {
         </div>
       ) : (
         <div className="flex items-center">
-          <h3 className="text-xl font-semibold">No Sessions found.</h3>
+          <h3 className="text-2xl font-semibold">No Sessions found.</h3>
         </div>
       )}
     </div>

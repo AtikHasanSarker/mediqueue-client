@@ -1,48 +1,63 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
 import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FaUserPlus } from "react-icons/fa";
 import { MdOutlineBookmarks } from "react-icons/md";
 
 const BookSession = ({ tutor }) => {
-  const [loading, setLoading] = useState(false);
+  const router = useRouter()
   const { data: session } = authClient.useSession();
   const user = session?.user;
-  const { name, _id, subject } = tutor;
+  const { name, _id, subject, sessionStartDate, totalSlot } = tutor;
 
-const onSubmit = async(e)=>{
-        e.preventDefault()
-        const formData = new FormData(e.currentTarget)
-        const bookingData = Object.fromEntries(formData.entries());
-  
-        setLoading(true);   
-        const res = await fetch('http://localhost:5000/booked-sessions', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(bookingData)
-        });
-        const data = await res.json()
-        if(data.acknowledged){
-            toast.success('Session booked successfully!')
-        }
-        setLoading(false)
+  const today = new Date();
+  const sessionDate = new Date(sessionStartDate);
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const bookingData = Object.fromEntries(formData.entries());
+
+    const bookingRes = await fetch("http://localhost:5000/booked-sessions", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(bookingData),
+    });
+
+    const data = await bookingRes.json();
+    if (data.acknowledged) {
+      toast.success("Session booked successfully!");
+
+      const update = await fetch(`http://localhost:5000/tutors/${ _id}`, {
+        method: "PATCH",
+      });
+
+      const updated = await update.json();
+      if (updated.modifiedCount > 0) {
+        router.refresh();
       }
-
-
+    }
+  };
 
   return (
     <Modal>
       <Button
-        isDisabled={loading}
+        isDisabled={today > sessionDate || totalSlot === 0}
         className="mt-4 bg-[#0d8a6c] hover:bg-[#0a6b52] py-6 font-semibold"
       >
-        {" "}
-        {loading ? " <Spinner /> Booking..." : "Book Session"}
-        <MdOutlineBookmarks />
+        {today > sessionDate ? (
+          "Booking is not Available"
+        ) : totalSlot === 0 ? (
+          "No available slot"
+        ) : (
+          <>
+            Book Session <MdOutlineBookmarks />
+          </>
+        )}
       </Button>
       <Modal.Backdrop>
         <Modal.Container placement="auto">
@@ -60,7 +75,7 @@ const onSubmit = async(e)=>{
                 you soon.
               </p>
             </Modal.Header>
-            <Modal.Body className="p-6">
+            <Modal.Body className="p-6 max-h-[70vh] overflow-y-auto">
               <Surface variant="default">
                 <form onSubmit={onSubmit} className="flex flex-col gap-4">
                   <TextField
@@ -100,6 +115,17 @@ const onSubmit = async(e)=>{
                   >
                     <Label className="font-semibold">Phone</Label>
                     <Input placeholder="Enter your phone number" />
+                  </TextField>
+
+                  <TextField
+                    defaultValue="Booked"
+                    className="w-full"
+                    name="status"
+                    type="text"
+                    variant="secondary"
+                  >
+                    <Label className="font-semibold">Status</Label>
+                    <Input />
                   </TextField>
                   <TextField
                     defaultValue={_id}

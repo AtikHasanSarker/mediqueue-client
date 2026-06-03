@@ -61,7 +61,7 @@ const MyTutorsPage = () => {
           </Table>
         </div>
       ) : (
-        <p>No tutors found.</p>
+        <h3 className="text-2xl font-semibold">No tutors found.</h3>
       )}
     </div>
   );
