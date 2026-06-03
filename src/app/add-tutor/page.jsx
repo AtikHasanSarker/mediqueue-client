@@ -14,6 +14,10 @@ import {
 } from "@heroui/react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import { RiGraduationCapFill } from "react-icons/ri";
+import { FiUser } from "react-icons/fi";
+import { BiDetail } from "react-icons/bi";
+import { IoPricetagsOutline } from "react-icons/io5";
 
 const AddTutorPage = () => {
   const { data: session } = authClient.useSession();
@@ -44,7 +48,8 @@ const AddTutorPage = () => {
     <div className="max-w-4xl mx-auto py-30 px-6">
       {/* Header */}
       <div className="mb-8">
-        <span className="text-xs font-medium px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-200">
+        <span className="text-xs w-fit flex gap-2 font-medium px-3 py-1 rounded-full bg-green-50 text-green-600 border border-green-200">
+          <RiGraduationCapFill />
           TUTOR MANAGEMENT
         </span>
 
@@ -55,15 +60,20 @@ const AddTutorPage = () => {
         </p>
       </div>
 
-      <div className="border rounded-2xl p-8 shadow-sm bg-white">
+      <div className="border rounded-2xl p-8 shadow-sm">
         <Form onSubmit={onSubmit} className="space-y-10">
           <div className=" grid grid-cols-1 md:grid-cols-2 gap-12">
             <div className="space-y-10">
               {/* PERSONAL INFORMATION */}
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-green-600 border-b pb-3 mb-6">
-                  Personal Information
-                </h3>
+                <div className="flex text-xl gap-3 pb-3 mb-6 border-b">
+                  <span className="bg-emerald-200/40 text-[#0d8a6c] p-1 rounded-lg">
+                    <FiUser className="size-5" />
+                  </span>
+                  <h3 className="font-semibold uppercase tracking-wider text-green-600 ">
+                    Personal Information
+                  </h3>
+                </div>
                 <div className="space-y-6">
                   <TextField
                     required
@@ -106,9 +116,14 @@ const AddTutorPage = () => {
               </div>
 
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-green-600 border-b pb-3 mb-6">
-                  Availability & Pricing
-                </h3>
+                <div className="flex text-xl gap-3 pb-3 mb-6 border-b">
+                  <span className="bg-emerald-200/40 text-[#0d8a6c] p-1 rounded-lg">
+                    <IoPricetagsOutline className="size-5" />
+                  </span>
+                  <h3 className="font-semibold uppercase tracking-wider text-green-600">
+                    Availability & Pricing
+                  </h3>
+                </div>
 
                 <div className="grid md:grid-cols-2 gap-5">
                   <TextField required name="hourlyFee">
@@ -136,9 +151,14 @@ const AddTutorPage = () => {
 
             {/* TEACHING DETAILS */}
             <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-green-600 border-b pb-3 mb-6">
-                Teaching Details
-              </h3>
+              <div className="flex text-xl gap-3 pb-3 mb-6 border-b">
+                <span className="bg-emerald-200/40 text-[#0d8a6c] p-1 rounded-lg">
+                  <BiDetail className="size-5" />
+                </span>
+                <h3 className="font-semibold uppercase tracking-wider text-green-600">
+                  Teaching Details
+                </h3>
+              </div>
 
               <div className="space-y-6">
                 <TextField required name="subject">
@@ -184,7 +204,6 @@ const AddTutorPage = () => {
                 <TextField required name="availableDays">
                   <Label className="font-semibold">Available Days & Time</Label>
                   <Input
-                    
                     label="Available Days & Time"
                     placeholder="Example: Sun - Thu 5:00 PM - 8:00 PM"
                     className="md:col-span-2"

@@ -28,7 +28,7 @@ const GlobalTutorLocation = () => {
       },
     ];
     return (
-      <section className="py-20 bg-gray-50">
+      <section className="py-20">
         <div className="max-w-6xl mx-auto px-4">
           {/* Heading */}
           <div className="text-center mb-12">

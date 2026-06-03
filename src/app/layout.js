@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import { Toaster } from "react-hot-toast";
+import NextThemeProvider from "@/providers/NextThemeProvider";
 
 const poppins = Poppins({
   weight: "400",
@@ -17,12 +18,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
-        <Navbar />
-        {children}
-        <Footer />
-        <Toaster />
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${poppins.className} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <NextThemeProvider>
+          <Navbar />
+          {children}
+          <Footer />
+          <Toaster />
+        </NextThemeProvider>
       </body>
     </html>
   );

@@ -6,7 +6,7 @@ import TrustedLearners from "@/components/homepage/TrustedLearners";
 
 export default function Home() {
   return (
-    <div className="bg-gray-50">
+    <div>
       <Hero/>
       <AboutSection/>
       <AvailableTutors/>

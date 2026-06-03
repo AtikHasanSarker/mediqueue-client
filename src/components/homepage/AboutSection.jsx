@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { ArrowRight, Target, Eye } from "lucide-react";
 import student1 from "@/assets/student-1.png";
 import student2 from "@/assets/student-2.jpg";
@@ -30,7 +30,6 @@ const AboutSection = () => {
       value: "12",
       label: "Countries Served",
     },
-    
   ];
   return (
     <section className="max-w-6xl mx-auto px-5 py-24">
@@ -102,7 +101,7 @@ const AboutSection = () => {
                 </svg>
               </div>
 
-              <div className="text-white text-4xl">✦</div>
+              <div className=" text-4xl">✦</div>
             </div>
           </div>
         </div>
@@ -119,11 +118,11 @@ const AboutSection = () => {
             </div>
           </div>
 
-          <h2 className="text-5xl font-bold text-[#16161D] leading-tight max-w-[600px]">
+          <h2 className="text-5xl font-bold leading-tight max-w-[600px]">
             Learn More About Who We Are
           </h2>
 
-          <p className="mt-6 text-lg text-gray-600 leading-9 max-w-[700px]">
+          <p className="mt-6 text-lg  leading-9 max-w-[700px]">
             We are a dedicated mentoring platform connecting learners with
             experienced industry professionals. Our mission is to guide
             students, aspiring professionals, and teams.
@@ -133,14 +132,14 @@ const AboutSection = () => {
           <div className="grid md:grid-cols-2 gap-10 mt-12">
             <div className="pr-6 md:border-r border-gray-200">
               <div className="w-16 h-16 rounded-full bg-[#0FAE84] flex items-center justify-center mb-5">
-                <Target className="text-white w-8 h-8" />
+                <Target className=" w-8 h-8" />
               </div>
 
-              <h3 className="text-4xl font-bold text-[#1F1F27] mb-4">
+              <h3 className="text-4xl font-bold mb-4">
                 Our Mission
               </h3>
 
-              <p className="text-gray-600 text-lg leading-9">
+              <p className=" text-lg leading-9">
                 Our mission is to connect learners with expert mentors who
                 inspire, guide, and empower them to achieve their goals.
               </p>
@@ -148,21 +147,19 @@ const AboutSection = () => {
 
             <div>
               <div className="w-16 h-16 rounded-full bg-[#0FAE84] flex items-center justify-center mb-5">
-                <Eye className="text-white w-8 h-8" />
+                <Eye className=" w-8 h-8" />
               </div>
 
-              <h3 className="text-4xl font-bold text-[#1F1F27] mb-4">
-                Our Vision
-              </h3>
+              <h3 className="text-4xl font-bold mb-4">Our Vision</h3>
 
-              <p className="text-gray-600 text-lg leading-9">
+              <p className="text-lg leading-9">
                 Our vision is to become the most impactful global mentoring
                 platform, transforming the way people learn, grow, and succeed.
               </p>
             </div>
           </div>
 
-          <button className="mt-12 bg-[#10B981] hover:bg-[#0D9F76] transition-all duration-300 text-white font-semibold px-8 py-4 rounded-full flex items-center gap-2">
+          <button className="mt-12 bg-[#10B981] hover:bg-[#0D9F76] transition-all duration-300  font-semibold px-8 py-4 rounded-full flex items-center gap-2">
             More About Us
             <ArrowRight size={20} />
           </button>
@@ -182,7 +179,7 @@ const AboutSection = () => {
               <div className="text-emerald-500">{item.icon}</div>
 
               <div>
-                <h2 className="text-5xl font-bold text-gray-900">
+                <h2 className="text-5xl font-bold ">
                   <CountUp
                     end={item.value}
                     duration={3}
@@ -191,7 +188,7 @@ const AboutSection = () => {
                   />
                   +
                 </h2>
-                <p className="text-gray-600 mt-1">{item.label}</p>
+                <p className=" mt-1">{item.label}</p>
               </div>
             </div>
           ))}
@@ -202,10 +199,10 @@ const AboutSection = () => {
             </div>
 
             <div>
-              <h2 className="text-5xl font-bold text-gray-900">
+              <h2 className="text-5xl font-bold">
                 <CountUp end={98} duration={3} enableScrollSpy scrollSpyOnce />%
               </h2>
-              <p className="text-gray-600 mt-1">Satisfaction Score</p>
+              <p className=" mt-1">Satisfaction Score</p>
             </div>
           </div>
         </div>

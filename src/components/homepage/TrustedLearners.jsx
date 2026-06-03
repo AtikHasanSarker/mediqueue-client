@@ -14,7 +14,7 @@ const TrustedLearners = () => {
     }, []);
 
   return (
-    <section className="py-20 overflow-hidden bg-white relative">
+    <section className="py-20 overflow-hidden relative">
       {/* Badge */}
       <div className="flex justify-center mb-4">
         <span className="bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-medium">
@@ -40,7 +40,7 @@ const TrustedLearners = () => {
       {/* Bottom Marquee */}
       <Marquee speed={40} direction="right" pauseOnHover>
         {reviews.map((review) => (
-          <ReviewCard key={`bottom-${review.id}`} review={review} />
+          <ReviewCard key={review.id} review={review} />
         ))}
       </Marquee>
     </section>

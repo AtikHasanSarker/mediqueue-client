@@ -60,8 +60,8 @@ export function EditNodal({ tutor }) {
       <Modal.Backdrop>
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-md">
-            <h2 className="text-2xl font-semibold mb-6">
-              Update Tutor Information
+            <h2 className="text-2xl font-semibold mb-6 flex gap-3">
+              <FaEdit />  Update Tutor Information
             </h2>
             <Modal.CloseTrigger />
             <Modal.Header>

@@ -16,6 +16,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import MobileMenu from "./MobileMenu";
 import MobileNav from "./MobileNav";
+import { ThemeToggle } from "../ThemeToggle";
 
 const Navbar = () => {
   const router = useRouter();
@@ -112,6 +113,7 @@ const Navbar = () => {
           </nav>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle/>
             {user ? (
               <>
                 <div className="hidden md:flex items-center gap-2">
@@ -160,10 +162,6 @@ const Navbar = () => {
                     </Dropdown.Popover>
                   </Dropdown>
                 </div>
-                {/* for mobile view */}
-                <div className="lg:hidden">
-                  <MobileMenu handleLogout={handleLogout} pathname={pathname} />
-                </div>
               </>
             ) : (
               <div className="hidden items-center gap-2 md:flex">
@@ -182,6 +180,11 @@ const Navbar = () => {
                 </Link>
               </div>
             )}
+
+            {/* for mobile view */}
+            <div className="lg:hidden">
+              <MobileMenu handleLogout={handleLogout} user={user} pathname={pathname} />
+            </div>
           </div>
         </div>
       </header>
