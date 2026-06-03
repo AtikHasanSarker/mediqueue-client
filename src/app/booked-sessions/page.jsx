@@ -16,7 +16,7 @@ const MyBookedSessions = () => {
           const data = await res.json();
           setBookedSessions(data);
         } catch (error) {
-          console.error(error);
+          console.error("error in fetching");
         }
       };
   
@@ -32,7 +32,6 @@ const MyBookedSessions = () => {
         },
       );
     const data = await res.json();
-    console.log(data)
     if(data.modifiedCount > 0){
       setBookedSessions((prev) =>
         prev.map((item) =>

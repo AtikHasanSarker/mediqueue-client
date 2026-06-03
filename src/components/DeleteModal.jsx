@@ -11,7 +11,6 @@ const DeleteModal = ({ tutor }) => {
       },
     });
     const data = await res.json();
-    console.log(data)
     if (data.deletedCount > 0) {
         toast.success("Tutor Deleted Successfully!")
       window.location.reload();

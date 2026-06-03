@@ -49,7 +49,6 @@ export function EditNodal({ tutor }) {
     }else{
       toast.error("Update Failed!")
     }
-    console.log(data);
   };
   return (
     <Modal>

@@ -12,7 +12,6 @@ export function TutorCard({ tutor }) {
     availableDays,
     subject,
   } = tutor;
-  console.log("photoURL:", photoURL);
   return (
     <Card className="group relative border p-0 overflow-hidden hover:-translate-y-3 transition-transform duration-300">
       <div className="relative h-100 w-full overflow-hidden">

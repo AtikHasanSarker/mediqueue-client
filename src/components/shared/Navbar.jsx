@@ -3,11 +3,7 @@ import Link from "next/link";
 import logo from "@/assets/logo.png";
 import { Avatar, Button, Dropdown, Label } from "@heroui/react";
 import { AiOutlineUser } from "react-icons/ai";
-import {
-  FaUsers,
-  FaUserPlus,
-  FaCalendarAlt,
-} from "react-icons/fa";
+import { FaUsers, FaUserPlus, FaCalendarAlt } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { FaHouseChimney } from "react-icons/fa6";
 import { useEffect, useState } from "react";
@@ -49,8 +45,6 @@ const Navbar = () => {
     };
   }, [isHome]);
 
-
-
   const navItems = [
     { title: "Home", href: "/", icon: FaHouseChimney },
     { title: "Tutors", href: "/tutors", icon: FaUsers },
@@ -60,13 +54,11 @@ const Navbar = () => {
     { title: "Add Tutor", href: "/add-tutor", icon: FaUserPlus },
     { title: "My Tutors", href: "/my-tutors", icon: FaUsers },
     {
-      title: "My Booked Sessions",
+      title: "Booked Sessions",
       href: "/booked-sessions",
       icon: FaCalendarAlt,
     },
   ];
-
-  
 
   return (
     <>
@@ -113,13 +105,10 @@ const Navbar = () => {
           </nav>
 
           <div className="flex items-center gap-2">
-            <ThemeToggle/>
+            <ThemeToggle />
             {user ? (
               <>
-                <div className="hidden md:flex items-center gap-2">
-                  <p className="font-medium mr-3 hidden lg:block">
-                    Hello, {user.name.split(" ")[0]}
-                  </p>
+                <div className="hidden md:flex">
                   <Dropdown>
                     <Button aria-label="Menu" className="w-fit p-0">
                       <Avatar>
@@ -137,12 +126,23 @@ const Navbar = () => {
                         onAction={(key) => console.log(`Selected: ${key}`)}
                       >
                         <Dropdown.Item
+                          id="userName"
+                          onClick={() => router.push("/profile")}
+                          textValue={user.name}
+                        >
+                          <Label className="font-semibold">
+                            <p className="font-medium mr-3 hidden lg:block">
+                              Hello, {user.name.split(" ")[0]}
+                            </p>
+                          </Label>
+                        </Dropdown.Item>
+
+                        <Dropdown.Item
                           id="profile"
                           onClick={() => router.push("/profile")}
                           textValue="Profile"
                         >
                           <Label className="cursor-pointer flex gap-2 items-center font-semibold">
-                            {" "}
                             <AiOutlineUser />
                             Profile
                           </Label>
@@ -183,7 +183,11 @@ const Navbar = () => {
 
             {/* for mobile view */}
             <div className="lg:hidden">
-              <MobileMenu handleLogout={handleLogout} user={user} pathname={pathname} />
+              <MobileMenu
+                handleLogout={handleLogout}
+                user={user}
+                pathname={pathname}
+              />
             </div>
           </div>
         </div>

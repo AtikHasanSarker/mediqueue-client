@@ -28,7 +28,6 @@ const AddTutorPage = () => {
     const formData = new FormData(e.currentTarget);
     const tutorData = Object.fromEntries(formData.entries());
     tutorData.userId = user?.id;
-    console.log("tutorData from add-tutor page: ", tutorData);
 
     const res = await fetch("http://localhost:5000/tutors", {
       method: "POST",

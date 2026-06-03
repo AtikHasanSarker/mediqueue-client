@@ -24,11 +24,11 @@ const MobileMenu = ({ handleLogout, pathname, user }) => {
     { title: "Add Tutor", icon: FaUserPlus, href: "/add-tutor" },
     { title: "My Tutors", icon: FaUsers, href: "/my-tutors" },
     {
-      title: "My Booked Sessions",
+      title: "Booked Sessions",
       icon: FaCalendarAlt,
       href: "/booked-sessions",
     },
-    { title: "My Profile", icon: FaUser, href: "/profile" },
+    { title: "Profile", icon: FaUser, href: "/profile" },
   ];
   return (
     <div>
