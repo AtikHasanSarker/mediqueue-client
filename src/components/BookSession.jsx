@@ -20,10 +20,13 @@ const BookSession = ({ tutor }) => {
     const formData = new FormData(e.currentTarget);
     const bookingData = Object.fromEntries(formData.entries());
 
+     const { data: tokenData } = await authClient.token();
+
     const bookingRes = await fetch("http://localhost:5000/booked-sessions", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(bookingData),
     });

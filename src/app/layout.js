@@ -2,6 +2,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
+import TitleUpdater from "@/components/shared/TitleUpdater";
 import { Toaster } from "react-hot-toast";
 import NextThemeProvider from "@/providers/NextThemeProvider";
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <NextThemeProvider>
+          <TitleUpdater />
           <Navbar />
           {children}
           <Footer />

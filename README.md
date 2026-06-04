@@ -1,36 +1,129 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MediQueue
 
-## Getting Started
+MediQueue is a modern tutor booking platform built with Next.js. It connects students with tutors, allowing users to browse tutors, book sessions, manage bookings, and provide a smooth learning experience through an intuitive interface.
 
-First, run the development server:
+## Live Website
+
+https://medi-queue-client.vercel.app
+
+## Features
+
+### Student Features
+
+* Browse available tutors
+* View tutor details
+* Book tutoring sessions
+* Manage booked sessions
+* User authentication and authorization
+
+### Tutor Features
+
+* Create tutor profiles
+* Manage tutoring sessions
+* Update tutor information
+* Delete tutor listings
+* View booked sessions
+
+### General Features
+
+* Responsive design for mobile, tablet, and desktop
+* Secure authentication system
+* Dynamic routing with Next.js
+* Interactive UI using HeroUI
+* Toast notifications for user feedback
+* Custom 404 page
+* Loading states and error handling
+
+## Technologies Used
+
+### Frontend
+
+* Next.js 15/16
+* React
+* Tailwind CSS
+* HeroUI
+* React Hot Toast
+* React Icons
+
+### Backend
+
+* Node.js
+* Express.js
+* MongoDB
+
+### Authentication
+
+* Better Auth
+
+### Deployment
+
+* Vercel (Frontend)
+* Backend Hosting Platform
+
+## Installation
+
+### Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/mediqueue.git
+cd mediqueue
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install dependencies
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Environment Variables
 
-## Learn More
+Create a `.env.local` file and add:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+NEXT_PUBLIC_API_URL=your_api_url
+MONGODB_URI=your_mongodb_uri
+BETTER_AUTH_SECRET=your_secret
+BETTER_AUTH_URL=your_auth_url
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Main Functionalities
 
-## Deploy on Vercel
+### Tutor Management
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Add Tutor
+* Update Tutor
+* Delete Tutor
+* View Tutor Details
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Session Management
+
+* Create Session
+* Book Session
+* View Booked Sessions
+
+### Authentication
+
+* User Registration
+* User Login
+* Protected Routes
+* Session Management
+
+## Future Improvements
+
+* Payment Integration
+* Tutor Ratings & Reviews
+* Advanced Search & Filtering
+* Real-time Notifications
+* Video Session Support
+* Admin Dashboard
+
+## Author
+
+Atik Hasan Sarker
+
+Department of Information Science and Library Management
+
+## License
+
+This project is created for educational and learning purposes.

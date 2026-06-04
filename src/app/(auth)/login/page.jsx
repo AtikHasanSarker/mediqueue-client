@@ -11,9 +11,12 @@ import {
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
+  const router = useRouter()
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -21,13 +24,18 @@ const LoginPage = () => {
     const { data, error } = await authClient.signIn.email({
       email: user.email,
       password: user.password,
-      callbackURL: "/",
+      
     });
+    const { data: tokenData } = await authClient.token();
+    console.log(tokenData);
+
     if (error) {
       toast.error("Login failed! Please check your credentials.");
     } else {
       toast.success("Login successful! Redirecting...");
+      router.push("/")
     }
+    
   };
 
   const handleGoogleSignin = async () => {
@@ -36,11 +44,16 @@ const LoginPage = () => {
     });
   };
   return (
-    <div className="max-w-4xl mx-auto mt-40 mb-20">
+    <div className="max-w-xl mx-auto mt-40 mb-20 px-6">
       <Card className="border p-10">
-        <h2 className="text-3xl font-bold my-4 text-center">Login</h2>
+        <div className="my-8 text-center">
+          <h2 className="text-3xl font-extrabold ">
+            Welcome <span className="text-emerald-600">Back</span>
+          </h2>
+          <p>Continue Your Learning Journey today</p>
+        </div>
         <Form
-          className="flex w-96 flex-col gap-4"
+          className="flex flex-col gap-4"
           render={(props) => <form {...props} data-custom="foo" />}
           onSubmit={onSubmit}
         >
@@ -84,9 +97,9 @@ const LoginPage = () => {
             </Description>
             <FieldError />
           </TextField>
+          <p className="text-right text-[#0d8a6c] font-semibold text-sm">Forgot Password?</p>
 
-          
-          <div className="flex gap-2 mt-4">
+          <div className="flex gap-2 mt-2">
             <Button type="submit" className="bg-[#0d8a6c] text-white">
               Login
             </Button>
@@ -117,10 +130,7 @@ const LoginPage = () => {
         </Button>
         <p className="text-center text-sm text-gray-600">
           Don't have an account?{" "}
-          <Link
-            href="/register"
-            className="text-[#0d8a6c] hover:underline"
-          >
+          <Link href="/register" className="text-[#0d8a6c] hover:underline">
             Register Now
           </Link>
         </p>

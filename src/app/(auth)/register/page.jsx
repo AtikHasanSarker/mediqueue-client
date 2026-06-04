@@ -43,11 +43,11 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-40 mb-20">
+    <div className="max-w-xl mx-auto mt-40 mb-20 px-6">
       <Card className="border p-10">
         <h2 className="text-3xl font-bold my-4 text-center">Create Account</h2>
         <Form
-          className="flex w-96 flex-col gap-4"
+          className="flex flex-col gap-4"
           render={(props) => <form {...props} data-custom="foo" />}
           onSubmit={onSubmit}
         >

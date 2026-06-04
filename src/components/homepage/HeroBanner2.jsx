@@ -17,7 +17,7 @@ const HeroBanner2 = () => {
             <div className="grid grid-cols-1 items-center gap-10 lg:gap-30 lg:grid-cols-2 w-full">
               {/* Left Content */}
               <div className="z-10  pb-20">
-                {/* Heading */}
+                {/* Heading */} 
                 <h1 className=" text-3xl font-bold leading-tight text-white lg:text-4xl">
                   Your Path to Success
                   <br />

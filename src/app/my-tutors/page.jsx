@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
-import { Button, Table } from "@heroui/react";
+import { Table } from "@heroui/react";
 import DeleteModal from "@/components/DeleteModal";
 import { EditNodal } from "@/components/EditModal";
 

@@ -4,6 +4,7 @@ import { authClient } from "@/lib/auth-client";
 import { Button, Chip, Table } from "@heroui/react";
 
 const MyBookedSessions = () => {
+  
   const { data: session } = authClient.useSession();
     const user = session?.user;
     const [bookedSessions, setBookedSessions] = useState([]);
@@ -24,6 +25,7 @@ const MyBookedSessions = () => {
     }, [user?.id]);
 
     const handleRemove = async(id) => {
+      
       const res = await fetch(
         `http://localhost:5000/booked-sessions/${id}`,
         {
@@ -43,7 +45,7 @@ const MyBookedSessions = () => {
   
   
   return (
-    <div className="pt-40 pb-20 text-center max-w-6xl min-h-screen mx-auto px-6">
+    <div className="pt-40 pb-20 max-w-6xl min-h-screen mx-auto px-6">
       {bookedSessions?.length > 0 ? (
         <div>
           <div className="mb-8">

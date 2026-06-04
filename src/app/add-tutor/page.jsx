@@ -28,11 +28,13 @@ const AddTutorPage = () => {
     const formData = new FormData(e.currentTarget);
     const tutorData = Object.fromEntries(formData.entries());
     tutorData.userId = user?.id;
-
+     const { data: tokenData } = await authClient.token();
+    
     const res = await fetch("http://localhost:5000/tutors", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(tutorData),
     });
@@ -40,6 +42,8 @@ const AddTutorPage = () => {
     if (data.acknowledged) {
       toast.success("Tutor added successfully!");
       // window.location.reload();
+    }else{
+      toast.error("Failed to add tutor")
     }
   };
 

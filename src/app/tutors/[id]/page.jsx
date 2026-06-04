@@ -1,11 +1,21 @@
 import Image from "next/image";
 import { Card, CardContent } from "@heroui/react";
 import BookSession from "@/components/BookSession";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 
 const TutorDetailPage = async ({ params }) => {
   const { id } = await params;
-  const res = await fetch(`http://localhost:5000/tutors/${id}`);
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  });
+  console.log(token)
+  const res = await fetch(`http://localhost:5000/tutors/${id}`,{
+    headers: {
+      authorization: `Bearer ${token}`
+    }
+  });
   const tutor = await res.json();
   const {
     name,
