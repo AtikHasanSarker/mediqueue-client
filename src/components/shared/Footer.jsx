@@ -18,11 +18,11 @@ const Footer = () => {
       className="bg-cover bg-center bg-no-repeat text-white/70"
     >
       <div className="max-w-6xl mx-auto px-5 py-16">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-6 md:gap-10 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="col-span-2">
             <Link href="/">
-              <Image src={logo} alt="logo" width={400} height={100} />
+              <Image src={logo} alt="logo" width={300} height={100} />
             </Link>
 
             <p className="mt-4 text-sm leading-relaxed">

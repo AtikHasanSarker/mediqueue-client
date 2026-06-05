@@ -13,7 +13,9 @@ const MyTutorsPage = () => {
   useEffect(() => {
     if (!user?.id) return;
     const fetchTutors = async () => {
-      const res = await fetch(`http://localhost:5000/my-tutors/${user.id}`);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/my-tutors/${user.id}`,
+      );
       const data = await res.json();
       setTutors(data);
     };

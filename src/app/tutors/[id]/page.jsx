@@ -11,11 +11,14 @@ const TutorDetailPage = async ({ params }) => {
     headers: await headers()
   });
   console.log(token)
-  const res = await fetch(`http://localhost:5000/tutors/${id}`,{
-    headers: {
-      authorization: `Bearer ${token}`
-    }
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${id}`,
+    {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    },
+  );
   const tutor = await res.json();
   const {
     name,

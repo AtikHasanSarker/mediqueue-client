@@ -4,7 +4,9 @@ import { Button } from "@heroui/react";
 import { FaAngleRight } from "react-icons/fa6";
 
 const AvailableTutors = async () => {
-  const res = await fetch("http://localhost:5000/availableTutors");
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/availableTutors`,
+  );
   const tutors = await res.json();
   return (
     <div className="max-w-6xl mx-auto px-8 py-20">

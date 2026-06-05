@@ -97,7 +97,7 @@ const HeroBanner1 = () => {
 
           {/* Floating Buttons */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white rounded-full shadow-lg p-2 flex flex-col gap-3">
-            <button className="w-12 h-12 rounded-full border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
+            <button className="w-12 h-12 rounded-full border text-black flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
               <Mic />
             </button>
 
@@ -105,7 +105,7 @@ const HeroBanner1 = () => {
               <Phone />
             </button>
 
-            <button className="w-12 h-12 rounded-full border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
+            <button className="w-12 h-12 rounded-full text-black border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
               <VideoOff />
             </button>
           </div>

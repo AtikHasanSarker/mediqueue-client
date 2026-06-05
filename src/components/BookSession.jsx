@@ -22,22 +22,28 @@ const BookSession = ({ tutor }) => {
 
      const { data: tokenData } = await authClient.token();
 
-    const bookingRes = await fetch("http://localhost:5000/booked-sessions", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${tokenData?.token}`,
+    const bookingRes = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/booked-sessions`,
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
+        body: JSON.stringify(bookingData),
       },
-      body: JSON.stringify(bookingData),
-    });
+    );
 
     const data = await bookingRes.json();
     if (data.acknowledged) {
       toast.success("Session booked successfully!");
 
-      const update = await fetch(`http://localhost:5000/tutors/${ _id}`, {
-        method: "PATCH",
-      });
+      const update = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${_id}`,
+        {
+          method: "PATCH",
+        },
+      );
 
       const updated = await update.json();
       if (updated.modifiedCount > 0) {
@@ -78,7 +84,7 @@ const BookSession = ({ tutor }) => {
                 you soon.
               </p>
             </Modal.Header>
-            <Modal.Body className="p-6 max-h-[70vh] overflow-y-auto">
+            <Modal.Body className="p-6 max-h-[60vh] overflow-y-auto">
               <Surface variant="default">
                 <form onSubmit={onSubmit} className="flex flex-col gap-4">
                   <TextField

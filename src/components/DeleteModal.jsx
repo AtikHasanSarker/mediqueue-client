@@ -6,13 +6,16 @@ import toast from "react-hot-toast";
 const DeleteModal = ({ tutor }) => {
   const handleDelete = async () => {
     const {data: tokenData} = await authClient.token()
-    const res = await fetch(`http://localhost:5000/tutors/${tutor._id}`, {
-      method: "DELETE",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${tokenData?.token}`
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${tutor._id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
       },
-    });
+    );
     const data = await res.json();
     if (data.deletedCount > 0) {
         toast.success("Tutor Deleted Successfully!")

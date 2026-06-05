@@ -13,7 +13,9 @@ const MyBookedSessions = () => {
       if (!user?.id) return;
       const fetchBookedSessions = async () => {
         try {
-          const res = await fetch(`http://localhost:5000/booked-sessions/${user.id}`);  
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/booked-sessions/${user.id}`,
+          );  
           const data = await res.json();
           setBookedSessions(data);
         } catch (error) {
@@ -27,10 +29,9 @@ const MyBookedSessions = () => {
     const handleRemove = async(id) => {
       
       const res = await fetch(
-        `http://localhost:5000/booked-sessions/${id}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/booked-sessions/${id}`,
         {
           method: "PATCH",
-          
         },
       );
     const data = await res.json();

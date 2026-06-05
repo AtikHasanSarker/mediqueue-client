@@ -10,9 +10,7 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    serverComponentsExternalPackages: ["@better-auth/kysely-adapter"],
-  },
+  serverExternalPackages: ["@better-auth/kysely-adapter"],
 };
 
 export default nextConfig;

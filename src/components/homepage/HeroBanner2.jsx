@@ -17,7 +17,7 @@ const HeroBanner2 = () => {
             <div className="grid grid-cols-1 items-center gap-10 lg:gap-30 lg:grid-cols-2 w-full">
               {/* Left Content */}
               <div className="z-10  pb-20">
-                {/* Heading */} 
+                {/* Heading */}
                 <h1 className=" text-3xl font-bold leading-tight text-white lg:text-4xl">
                   Your Path to Success
                   <br />
@@ -96,7 +96,7 @@ const HeroBanner2 = () => {
                   />
                 </div>
 
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white rounded-full shadow-lg p-2 flex flex-col gap-3">
+                <div className="absolute right-0 text-black top-1/2 -translate-y-1/2 z-20 bg-white rounded-full shadow-lg p-2 flex flex-col gap-3">
                   <button className="w-12 h-12 rounded-full border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
                     <Mic />
                   </button>
@@ -105,7 +105,7 @@ const HeroBanner2 = () => {
                     <Phone />
                   </button>
 
-                  <button className="w-12 h-12 rounded-full border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
+                  <button className="w-12 h-12 text-black rounded-full border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
                     <VideoOff />
                   </button>
                 </div>

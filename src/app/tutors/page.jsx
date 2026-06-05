@@ -8,7 +8,7 @@ const TutorsPage = async ({ searchParams }) => {
   const date = params?.date || "";
   
   const res = await fetch(
-    `http://localhost:5000/tutors?search=${search}&date=${date}`,
+    `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors?search=${search}&date=${date}`,
     {
       cache: "no-store",
     },
@@ -17,9 +17,8 @@ const TutorsPage = async ({ searchParams }) => {
   return (
     <div className="pt-30 pb-20 max-w-6xl mx-auto px-8">
       <h2 className="text-4xl my-20 text-center font-bold">All Tutors</h2>
-      <h1>{search}</h1>
 
-      <div className=" flex justify-between">
+      <div className=" flex flex-col md:flex-row justify-between">
         <SearchBar />
         <DateSorting/>
         

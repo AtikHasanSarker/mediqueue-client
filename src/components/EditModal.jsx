@@ -37,14 +37,17 @@ export function EditNodal({ tutor }) {
     const formData = new FormData(e.currentTarget);
     const tutorData = Object.fromEntries(formData.entries());
      const { data: tokenData } = await authClient.token();
-    const res = await fetch(`http://localhost:5000/my-tutors/${tutor._id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-        authorization: `Bearer ${tokenData?.token}`,
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/my-tutors/${tutor._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`,
+        },
+        body: JSON.stringify(tutorData),
       },
-      body: JSON.stringify(tutorData),
-    });
+    );
     const data = await res.json();
     if (data.modifiedCount > 0) {
       window.location.reload()
@@ -63,7 +66,7 @@ export function EditNodal({ tutor }) {
         <Modal.Container placement="auto">
           <Modal.Dialog className="sm:max-w-md">
             <h2 className="text-2xl font-semibold mb-6 flex gap-3">
-              <FaEdit />  Update Tutor Information
+              <FaEdit /> Update Tutor Information
             </h2>
             <Modal.CloseTrigger />
             <Modal.Header>
@@ -71,7 +74,7 @@ export function EditNodal({ tutor }) {
                 Update tutor details and save changes.
               </Modal.Heading>
             </Modal.Header>
-            <Modal.Body className="p-6 max-h-[calc(100vh-8rem)] overflow-y-auto">
+            <Modal.Body className="p-6 max-h-[70vh] overflow-y-auto">
               <Surface variant="default">
                 <Form onSubmit={onSubmit} className="space-y-10">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
