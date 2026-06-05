@@ -22,22 +22,24 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="relative flex w-full mr-12 items-center bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-blue-600/10 focus-within:border-blue-600 transition-all overflow-hidden">
-      <div className="pl-5 text-slate-400">
-        <Search className="w-5 h-5" />
-      </div>
+    <div className="w-full flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-white border border-slate-200 rounded-2xl shadow-sm focus-within:ring-4 focus-within:ring-green-600/10 focus-within:border-green-600 transition-all overflow-hidden">
+      <div className="w-full flex items-center flex-1 min-w-0">
+        <div className="pl-5 text-slate-400">
+          <Search className="w-5 h-5" />
+        </div>
 
-      <input
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        type="text"
-        placeholder="Search for tutors and subjects (e.g. Sadia, Biology...)"
-        className="flex-1 h-14 px-4 outline-none bg-transparent text-slate-700 placeholder:text-slate-400"
-      />
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          type="text"
+          placeholder="Search for tutors and subjects (e.g. Sadia, Biology...)"
+          className="flex-1 min-w-0 h-14 px-4 outline-none bg-transparent text-slate-700 placeholder:text-slate-400"
+        />
+      </div>
 
       <button
         onClick={handleSearch}
-        className="h-10 px-6 mr-2 cursor-pointer rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-colors"
+        className="w-full sm:w-auto h-12 px-6 cursor-pointer rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 transition-colors"
       >
         Search
       </button>

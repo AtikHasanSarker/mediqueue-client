@@ -33,7 +33,7 @@ const MobileMenu = ({ handleLogout, pathname, user }) => {
   return (
     <div>
       <Drawer isOpen={isOpen} onOpenChange={setIsOpen}>
-        <Button className="bg-transparent text-black">
+        <Button className="bg-transparent text-foreground">
           <CgMenu />
         </Button>
         <Drawer.Backdrop>

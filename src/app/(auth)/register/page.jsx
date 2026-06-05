@@ -8,15 +8,19 @@ import {
   Form,
   Input,
   Label,
-  Separator,
+  InputGroup,
   TextField,
 } from "@heroui/react";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const RegisterPage = () => {
+  const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +35,6 @@ const RegisterPage = () => {
     if (error) {
       toast.error("Registration failed! ");
     } else {
-
       toast.success("Registration successful! Please log in.");
       router.push("/login");
     }
@@ -92,8 +95,8 @@ const RegisterPage = () => {
           <TextField
             isRequired
             minLength={8}
+            className="w-full max-w-full"
             name="password"
-            type="password"
             validate={(value) => {
               if (value.length < 8) {
                 return "Password must be at least 8 characters";
@@ -108,15 +111,39 @@ const RegisterPage = () => {
             }}
           >
             <Label className="font-semibold">Password</Label>
-            <Input placeholder="Enter your password" />
+            <InputGroup>
+              <InputGroup.Input
+                className="w-full max-w-full"
+                type={isVisible ? "text" : "password"}
+                placeholder="Enter your password"
+              />
+              <InputGroup.Suffix className="pr-0">
+                <Button
+                  isIconOnly
+                  aria-label={isVisible ? "Hide password" : "Show password"}
+                  size="sm"
+                  variant="ghost"
+                  onPress={() => setIsVisible(!isVisible)}
+                >
+                  {isVisible ? (
+                    <MdOutlineRemoveRedEye className="size-4" />
+                  ) : (
+                    <FaRegEyeSlash className="size-4" />
+                  )}
+                </Button>
+              </InputGroup.Suffix>
+            </InputGroup>
             <Description>
               Must be at least 8 characters with 1 uppercase and 1 number
             </Description>
             <FieldError />
           </TextField>
-            <Button className="mt-4 w-full rounded-full bg-[#0d8a6c]" type="submit">
-              Register
-            </Button>
+          <Button
+            className="mt-4 w-full rounded-full bg-[#0d8a6c]"
+            type="submit"
+          >
+            Register
+          </Button>
         </Form>
 
         {/* separator */}

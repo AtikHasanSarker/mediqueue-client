@@ -16,8 +16,8 @@ const HeroBanner2 = () => {
           <div className="max-w-6xl mx-auto px-6">
             <div className="grid grid-cols-1 items-center gap-10 lg:gap-30 lg:grid-cols-2 w-full">
               {/* Left Content */}
-              <div className="z-10  pb-20">
-                {/* Heading */}
+              <div className="z-10 pb-20">
+                {/* Heading */} 
                 <h1 className=" text-3xl font-bold leading-tight text-white lg:text-4xl">
                   Your Path to Success
                   <br />
@@ -86,18 +86,18 @@ const HeroBanner2 = () => {
                 </div>
 
                 {/* Image */}
-                <div className="w-full lg:ml-20 z-10">
+                <div className="w-full ml-10 lg:ml-20 z-50">
                   <Image
                     width={406}
                     height={420}
                     src={tutor}
                     alt="mentor"
-                    className="object-bottom"
+                    className="w-70.5 lg:w-[406px] object-bottom"
                   />
                 </div>
 
-                <div className="absolute right-0 text-black top-1/2 -translate-y-1/2 z-20 bg-white rounded-full shadow-lg p-2 flex flex-col gap-3">
-                  <button className="w-12 h-12 rounded-full border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white rounded-full shadow-lg p-2 flex flex-col gap-3">
+                  <button className="w-12 h-12 text-black rounded-full border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
                     <Mic />
                   </button>
 

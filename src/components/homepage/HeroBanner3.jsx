@@ -19,31 +19,31 @@ const HeroBanner3 = () => {
         </div>
 
         <div className="flex items-center">
-          <div className="grid lg:grid-cols-2 items-center gap-10 w-full">
+          <div className="grid lg:grid-cols-2 items-center gap-5 md:gap-10 w-full">
             {/* Left Side */}
-            <div className="py-26">
+            <div className="py-20.75 lg:py-26">
               {/* Trusted Badge */}
               <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-md px-4 py-4 rounded-full mb-8">
                 <div className="flex -space-x-3">
                   <img
                     src="https://i.pravatar.cc/100?img=11"
-                    className="w-12 h-12 rounded-full border-2 border-white"
+                    className="w-10 h-10 rounded-full border-2 border-white"
                   />
                   <img
                     src="https://i.pravatar.cc/100?img=12"
-                    className="w-12 h-12 rounded-full border-2 border-white"
+                    className="w-10 h-10 rounded-full border-2 border-white"
                   />
                   <img
                     src="https://i.pravatar.cc/100?img=13"
-                    className="w-12 h-12 rounded-full border-2 border-white"
+                    className="w-10 h-10 rounded-full border-2 border-white"
                   />
                   <img
                     src="https://i.pravatar.cc/100?img=14"
-                    className="w-12 h-12 rounded-full border-2 border-white"
+                    className="w-10 h-10 rounded-full border-2 border-white"
                   />
                 </div>
 
-                <span className="text-white font-medium">
+                <span className="text-white text-sm font-medium">
                   Trusted by <span className="font-bold">10K+</span> Learners
                 </span>
               </div>
@@ -102,19 +102,19 @@ const HeroBanner3 = () => {
             </div>
 
             {/* Right Side */}
-            <div className="relative flex justify-end">
-              <div className=" w-[400px] h-[400px] rounded-full bg-white/10 backdrop-blur-sm" />
-              <div className="absolute top-0 text-[#ffbe1b] text-5xl -right-10 animate-spin">
+            <div className="relative flex justify-center lg:justify-end">
+              <div className="w-[300px] h-[300px] lg:w-[400px] lg:h-[400px] rounded-full bg-white/10 backdrop-blur-sm" />
+              <div className="absolute top-0 text-[#ffbe1b] text-5xl right-5 lg:-right-10 animate-spin">
                 <GiPolarStar />
               </div>
 
-              <div className="w-full absolute -bottom-30 z-10">
+              <div className="w-full absolute bottom-0 lg:-bottom-30 z-10">
                 <Image
                   width={500}
                   height={500}
                   src={mentorImage}
                   alt="mentor"
-                  className="object-bottom"
+                  className="w-70 lg:w-[500px] object-bottom"
                 />
               </div>
             </div>

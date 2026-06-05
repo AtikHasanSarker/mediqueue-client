@@ -8,15 +8,20 @@ import {
   Form,
   Input,
   Label,
+  InputGroup,
   TextField,
 } from "@heroui/react";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
-  const router = useRouter()
+  const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
   const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -24,7 +29,6 @@ const LoginPage = () => {
     const { data, error } = await authClient.signIn.email({
       email: user.email,
       password: user.password,
-      
     });
     const { data: tokenData } = await authClient.token();
     console.log(tokenData);
@@ -33,9 +37,8 @@ const LoginPage = () => {
       toast.error("Login failed! Please check your credentials.");
     } else {
       toast.success("Login successful! Redirecting...");
-      router.push("/")
+      router.push("/");
     }
-    
   };
 
   const handleGoogleSignin = async () => {
@@ -72,11 +75,12 @@ const LoginPage = () => {
             <Input placeholder="john@example.com" />
             <FieldError />
           </TextField>
+
           <TextField
             isRequired
             minLength={8}
+            className="w-full max-w-full"
             name="password"
-            type="password"
             validate={(value) => {
               if (value.length < 8) {
                 return "Password must be at least 8 characters";
@@ -91,13 +95,37 @@ const LoginPage = () => {
             }}
           >
             <Label className="font-semibold">Password</Label>
-            <Input placeholder="Enter your password" />
+            <InputGroup>
+              <InputGroup.Input
+                className="w-full max-w-full"
+                type={isVisible ? "text" : "password"}
+                placeholder="Enter your password"
+              />
+              <InputGroup.Suffix className="pr-0">
+                <Button
+                  isIconOnly
+                  aria-label={isVisible ? "Hide password" : "Show password"}
+                  size="sm"
+                  variant="ghost"
+                  onPress={() => setIsVisible(!isVisible)}
+                >
+                  {isVisible ? (
+                    <MdOutlineRemoveRedEye className="size-4" />
+                  ) : (
+                    <FaRegEyeSlash className="size-4" />
+                  )}
+                </Button>
+              </InputGroup.Suffix>
+            </InputGroup>
             <Description>
               Must be at least 8 characters with 1 uppercase and 1 number
             </Description>
             <FieldError />
           </TextField>
-          <p className="text-right text-[#0d8a6c] font-semibold text-sm">Forgot Password?</p>
+
+          <p className="text-right text-[#0d8a6c] font-semibold text-sm">
+            Forgot Password?
+          </p>
 
           <div className="flex gap-2 mt-2">
             <Button type="submit" className="bg-[#0d8a6c] text-white">
@@ -116,7 +144,7 @@ const LoginPage = () => {
           </div>
 
           <div className="relative flex justify-center">
-            <span className="bg-white px-4 text-sm text-gray-500">OR</span>
+            <span className="px-4 text-sm text-gray-500">OR</span>
           </div>
         </div>
 

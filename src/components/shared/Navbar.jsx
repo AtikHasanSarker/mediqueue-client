@@ -13,6 +13,7 @@ import { authClient } from "@/lib/auth-client";
 import MobileMenu from "./MobileMenu";
 import MobileNav from "./MobileNav";
 import { ThemeToggle } from "../ThemeToggle";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const router = useRouter();
@@ -21,6 +22,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     await authClient.signOut();
+    toast.success("Logout Successfully!")
     router.refresh();
   };
   const pathname = usePathname();
@@ -66,7 +68,7 @@ const Navbar = () => {
         className={`w-full z-50 transition-all duration-300 ${
           isHome && !scrolled
             ? "absolute top-0 bg-transparent text-white"
-            : "fixed top-0 bg-white text-black shadow-md backdrop-blur-xl"
+            : "fixed top-0 bg-background text-foreground shadow-md backdrop-blur-xl"
         }`}
       >
         <div className=" flex max-w-7xl mx-auto items-center justify-between gap-4 px-4 py-3 sm:px-6">
@@ -168,13 +170,16 @@ const Navbar = () => {
                 <Link href="/login" passHref>
                   <Button
                     size="xl"
-                    className="bg-black px-6 py-5 hover:bg-[#0d8a6c]"
+                    className="bg-foreground text-background px-6 py-5 hover:bg-[#0d8a6c]"
                   >
                     <span>Login</span>
                   </Button>
                 </Link>
                 <Link href="/register" passHref>
-                  <Button size="xl" className="bg-black hover:bg-[#0d8a6c]">
+                  <Button
+                    size="xl"
+                    className="bg-foreground text-background hover:bg-[#0d8a6c]"
+                  >
                     <span>Register</span>
                   </Button>
                 </Link>

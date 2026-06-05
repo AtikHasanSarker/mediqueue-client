@@ -2,6 +2,7 @@ import React from "react";
 import { TutorCard } from "../TutorCard";
 import { Button } from "@heroui/react";
 import { FaAngleRight } from "react-icons/fa6";
+import Link from "next/link";
 
 const AvailableTutors = async () => {
   const res = await fetch(
@@ -22,10 +23,12 @@ const AvailableTutors = async () => {
         ))}
       </div>
       <div className="mt-15 flex justify-center">
-        <Button className="group py-7 px-8 font-semibold bg-[#ffbe1b] hover:bg-yellow-500 text-black text-lg rounded-full flex items-center">
-          See All Tutors{" "}
-          <FaAngleRight className="group-hover:translate-x-1 transition-transform duration-300 ml-2" />
-        </Button>
+        <Link href="/tutors">
+          <Button className="group py-7 px-8 font-semibold bg-[#ffbe1b] hover:bg-yellow-500 text-black text-lg rounded-full flex items-center">
+            See All Tutors{" "}
+            <FaAngleRight className="group-hover:translate-x-1 transition-transform duration-300 ml-2" />
+          </Button>
+        </Link>
       </div>
     </div>
   );

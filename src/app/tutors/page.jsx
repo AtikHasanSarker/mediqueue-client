@@ -15,10 +15,10 @@ const TutorsPage = async ({ searchParams }) => {
   );
   const tutors = await res.json();
   return (
-    <div className="pt-30 pb-20 max-w-6xl mx-auto px-8">
-      <h2 className="text-4xl my-20 text-center font-bold">All Tutors</h2>
+    <div className="pt-20 md:pt-30 pb-20 max-w-6xl mx-auto px-8">
+      <h2 className="text-4xl my-10 text-center font-bold">All Tutors</h2>
 
-      <div className=" flex flex-col md:flex-row justify-between">
+      <div className=" flex flex-col gap-10 md:flex-row justify-between">
         <SearchBar />
         <DateSorting/>
         

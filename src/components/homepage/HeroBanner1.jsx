@@ -90,14 +90,14 @@ const HeroBanner1 = () => {
         {/* Right Content */}
         <div className="relative flex justify-center">
           {/* Background Cards */}
-          <div className="absolute top-25 left-25">
+          <div className="hidden md:absolute top-25 left-25">
             <div className="absolute w-85 h-100 bg-linear-to-r from-[#10A57F] to-[#D9BF38] rounded-3xl rotate-[10deg]" />
             <div className="absolute w-85 h-100 bg-linear-to-r from-[#10A57F] to-[#D9BF38] rounded-3xl rotate-[-6deg]" />
           </div>
 
           {/* Floating Buttons */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white rounded-full shadow-lg p-2 flex flex-col gap-3">
-            <button className="w-12 h-12 rounded-full border text-black flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
+            <button className="w-12 h-12 text-black rounded-full border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
               <Mic />
             </button>
 
@@ -105,7 +105,7 @@ const HeroBanner1 = () => {
               <Phone />
             </button>
 
-            <button className="w-12 h-12 rounded-full text-black border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
+            <button className="w-12 h-12 text-black rounded-full border flex items-center justify-center hover:bg-red-600 hover:text-white duration-300">
               <VideoOff />
             </button>
           </div>

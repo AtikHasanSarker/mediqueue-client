@@ -43,7 +43,7 @@ const MobileNav = ({ user, pathname }) => {
           {!user ? (
             <Link
               href="/login"
-              className="inline-flex flex-1 flex-col items-center gap-1 rounded-xl px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              className="inline-flex flex-1 flex-col items-center gap-1 px-2 py-1 text-xs font-medium text-muted-foreground"
             >
               <MdLogin className="h-5 w-5" />
               <span>Login</span>

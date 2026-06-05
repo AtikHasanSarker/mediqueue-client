@@ -135,9 +135,7 @@ const AboutSection = () => {
                 <Target className=" w-8 h-8" />
               </div>
 
-              <h3 className="text-4xl font-bold mb-4">
-                Our Mission
-              </h3>
+              <h3 className="text-4xl font-bold mb-4">Our Mission</h3>
 
               <p className=" text-lg leading-9">
                 Our mission is to connect learners with expert mentors who
@@ -165,8 +163,10 @@ const AboutSection = () => {
           </button>
         </div>
       </div>
+
+      {/* Stat  */}
       <div className="mt-20">
-        <div className="grid grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((item, index) => (
             <div
               key={index}
@@ -179,7 +179,7 @@ const AboutSection = () => {
               <div className="text-emerald-500">{item.icon}</div>
 
               <div>
-                <h2 className="text-5xl font-bold ">
+                <h2 className="text-4xl lg:text-5xl font-bold ">
                   <CountUp
                     end={item.value}
                     duration={3}
@@ -199,7 +199,7 @@ const AboutSection = () => {
             </div>
 
             <div>
-              <h2 className="text-5xl font-bold">
+              <h2 className="text-4xl lg:text-5xl font-bold">
                 <CountUp end={98} duration={3} enableScrollSpy scrollSpyOnce />%
               </h2>
               <p className=" mt-1">Satisfaction Score</p>

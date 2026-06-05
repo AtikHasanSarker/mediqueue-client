@@ -21,7 +21,7 @@ const DateSorting = () => {
           onChange={handleSorting}
           type="date"
           label="Session Start Date"
-          className="md:col-span-2"
+          className="md:col-span-2 text-foreground"
         />
       </TextField>
     </div>

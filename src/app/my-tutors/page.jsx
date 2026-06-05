@@ -25,10 +25,10 @@ const MyTutorsPage = () => {
 
 
   return (
-    <div className="pt-40 pb-20 min-h-screen max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-24 text-center md:pt-40 pb-20 min-h-screen max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       {tutors?.length > 0 ? (
         <div>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center sm:text-left">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center sm:text-left">
             Here are your tutors
           </h2>
 
@@ -40,18 +40,27 @@ const MyTutorsPage = () => {
               >
                 <div className="flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-start">
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900">{tutor.name}</h3>
-                    <p className="text-sm text-default-500 mt-1">{tutor.subject}</p>
+                    <h3 className="text-lg font-semibold text-slate-900">
+                      {tutor.name}
+                    </h3>
+                    <p className="text-sm text-default-500 mt-1">
+                      {tutor.subject}
+                    </p>
                   </div>
                   <div className="flex flex-wrap gap-2 text-sm text-slate-700">
-                    <span className="rounded-full bg-slate-100 px-3 py-1">Fee: {tutor.hourlyFee}</span>
-                    <span className="rounded-full bg-slate-100 px-3 py-1">Slots: {tutor.totalSlot}</span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1">
+                      Fee: {tutor.hourlyFee}
+                    </span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1">
+                      Slots: {tutor.totalSlot}
+                    </span>
                   </div>
                 </div>
 
                 <div className="mt-4 grid gap-2 text-sm text-slate-700">
                   <div>
-                    <span className="font-semibold">Session Start:</span> {tutor.sessionStartDate}
+                    <span className="font-semibold">Session Start:</span>{" "}
+                    {tutor.sessionStartDate}
                   </div>
                 </div>
 
@@ -66,7 +75,10 @@ const MyTutorsPage = () => {
           <div className="hidden md:block">
             <Table>
               <Table.ScrollContainer>
-                <Table.Content aria-label="Team members" className="min-w-[600px]">
+                <Table.Content
+                  aria-label="Team members"
+                  className="min-w-[600px]"
+                >
                   <Table.Header>
                     <Table.Column isRowHeader>TUTOR NAME</Table.Column>
                     <Table.Column>SUBJECT</Table.Column>
@@ -96,7 +108,11 @@ const MyTutorsPage = () => {
           </div>
         </div>
       ) : (
-        <h3 className="text-2xl font-semibold">No tutors found.</h3>
+        <div className="flex min-h-[40vh] items-center justify-center">
+          <h3 className="text-2xl font-semibold text-center">
+            No tutors found.
+          </h3>
+        </div>
       )}
     </div>
   );

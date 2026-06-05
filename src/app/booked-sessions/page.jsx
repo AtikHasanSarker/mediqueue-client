@@ -46,7 +46,7 @@ const MyBookedSessions = () => {
   
   
   return (
-    <div className="pt-40 pb-20 min-h-screen max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="pt-24 md:pt-40 pb-20 min-h-screen max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       {bookedSessions?.length > 0 ? (
         <div>
           <div className="mb-8">
