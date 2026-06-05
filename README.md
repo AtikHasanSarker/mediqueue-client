@@ -4,7 +4,7 @@ MediQueue is a tutor booking platform frontend built with Next.js 16, HeroUI, an
 
 ## Live Demo
 
-https://medi-queue-client.vercel.app
+https://mediqueue-ruby-seven.vercel.app
 
 ## Project Overview
 
