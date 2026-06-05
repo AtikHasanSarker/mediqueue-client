@@ -21,7 +21,7 @@ const HeroBanner3 = () => {
         <div className="flex items-center">
           <div className="grid lg:grid-cols-2 items-center gap-5 md:gap-10 w-full">
             {/* Left Side */}
-            <div className="py-21.75 lg:py-28">
+            <div className="py-21.75 lg:py-27">
               {/* Trusted Badge */}
               <div className="inline-flex items-center gap-4 bg-white/10 backdrop-blur-md px-4 py-4 rounded-full mb-8">
                 <div className="flex -space-x-3">
