@@ -1,129 +1,77 @@
 # MediQueue
 
-MediQueue is a modern tutor booking platform built with Next.js. It connects students with tutors, allowing users to browse tutors, book sessions, manage bookings, and provide a smooth learning experience through an intuitive interface.
+MediQueue is a tutor booking platform frontend built with Next.js 16, HeroUI, and Better Auth. It helps students discover tutors, book sessions, and manage appointments, while enabling tutors to share profiles, update availability, and track bookings.
 
-## Live Website
+## Live Demo
 
 https://medi-queue-client.vercel.app
 
-## Features
+## Project Overview
 
-### Student Features
+The frontend is designed around a responsive learning marketplace experience:
 
-* Browse available tutors
-* View tutor details
-* Book tutoring sessions
-* Manage booked sessions
-* User authentication and authorization
+- Public homepage with featured tutors, trust metrics, and service overview
+- Searchable tutor listing with keyword and date filters
+- Tutor detail cards with session booking modal
+- Authenticated flows for login, registration, profile, and tutor management
+- Booked sessions dashboard for students
+- Tutor management pages for adding, editing, and deleting tutor listings
 
-### Tutor Features
+## Key Features
 
-* Create tutor profiles
-* Manage tutoring sessions
-* Update tutor information
-* Delete tutor listings
-* View booked sessions
+### Student Experience
 
-### General Features
+- Browse available tutors
+- Search tutors by keyword and filter by date
+- Book tutoring sessions directly from tutor cards
+- View and cancel booked sessions
+- Responsive UI for mobile, tablet, and desktop
 
-* Responsive design for mobile, tablet, and desktop
-* Secure authentication system
-* Dynamic routing with Next.js
-* Interactive UI using HeroUI
-* Toast notifications for user feedback
-* Custom 404 page
-* Loading states and error handling
+### Tutor Experience
 
-## Technologies Used
-
-### Frontend
-
-* Next.js 15/16
-* React
-* Tailwind CSS
-* HeroUI
-* React Hot Toast
-* React Icons
-
-### Backend
-
-* Node.js
-* Express.js
-* MongoDB
+- Add a new tutor profile with availability and pricing
+- Manage tutor listings from a protected dashboard
+- Edit or delete existing tutor profiles
+- See booked sessions and session status
 
 ### Authentication
 
-* Better Auth
+- Email/password registration and login
+- Social login support via Google
+- Session tracking with Better Auth JWT plugin
+- Protected route handling using server-side session state
 
-### Deployment
+## Tech Stack
 
-* Vercel (Frontend)
-* Backend Hosting Platform
+- Frontend: `next`, `react`, `tailwindcss`, `@heroui/react`
+- UI: `HeroUI`, `react-icons`, `react-hot-toast`
+- Auth: `better-auth`, `@better-auth/mongo-adapter`
+- Styling: Tailwind CSS v4
+- Utilities: `date-fns`, `react-day-picker`, `swiper`, `lottie-react`
 
-## Installation
+## Folder Structure
 
-### Clone the repository
+- `src/app/` — Next.js app routes
+- `src/components/` — reusable UI and page components
+- `src/lib/auth-client.js` — Better Auth client configuration
+- `src/assets/` — images and animation assets
 
-```bash
-git clone https://github.com/your-username/mediqueue.git
-cd mediqueue
-```
+## Pages
 
-### Install dependencies
+- `/` — homepage with hero, about, featured tutors, and statistics
+- `/tutors` — searchable tutor listing page
+- `/booked-sessions` — user booking management
+- `/my-tutors` — tutor management dashboard
+- `/add-tutor` — add new tutor profile
+- `/auth/login` — login page
+- `/auth/register` — registration page
+- `/profile` — user profile management
 
-```bash
-npm install
-```
-
-### Environment Variables
-
-Create a `.env.local` file and add:
-
-```env
-NEXT_PUBLIC_API_URL=your_api_url
-MONGODB_URI=your_mongodb_uri
-BETTER_AUTH_SECRET=your_secret
-BETTER_AUTH_URL=your_auth_url
-```
-
-
-## Main Functionalities
-
-### Tutor Management
-
-* Add Tutor
-* Update Tutor
-* Delete Tutor
-* View Tutor Details
-
-### Session Management
-
-* Create Session
-* Book Session
-* View Booked Sessions
-
-### Authentication
-
-* User Registration
-* User Login
-* Protected Routes
-* Session Management
-
-## Future Improvements
-
-* Payment Integration
-* Tutor Ratings & Reviews
-* Advanced Search & Filtering
-* Real-time Notifications
-* Video Session Support
-* Admin Dashboard
 
 ## Author
 
 Atik Hasan Sarker
 
-Department of Information Science and Library Management
-
 ## License
 
-This project is created for educational and learning purposes.
+This project is created for educational purposes.

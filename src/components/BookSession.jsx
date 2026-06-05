@@ -1,13 +1,15 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import { Button, Input, Label, Modal, Surface, TextField } from "@heroui/react";
+import { Button, Input, Label, Modal, Spinner, Surface, TextField } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { FaUserPlus } from "react-icons/fa";
 import { MdOutlineBookmarks } from "react-icons/md";
 
 const BookSession = ({ tutor }) => {
-  const router = useRouter()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
   const { data: session } = authClient.useSession();
   const user = session?.user;
   const { name, _id, subject, sessionStartDate, totalSlot } = tutor;
@@ -17,38 +19,45 @@ const BookSession = ({ tutor }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const bookingData = Object.fromEntries(formData.entries());
+    setIsSubmitting(true);
 
-     const { data: tokenData } = await authClient.token();
+    try {
+      const formData = new FormData(e.currentTarget);
+      const bookingData = Object.fromEntries(formData.entries());
+      const { data: tokenData } = await authClient.token();
 
-    const bookingRes = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/booked-sessions`,
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          authorization: `Bearer ${tokenData?.token}`,
-        },
-        body: JSON.stringify(bookingData),
-      },
-    );
-
-    const data = await bookingRes.json();
-    if (data.acknowledged) {
-      toast.success("Session booked successfully!");
-
-      const update = await fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${_id}`,
+      const bookingRes = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/booked-sessions`,
         {
-          method: "PATCH",
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+          body: JSON.stringify(bookingData),
         },
       );
 
-      const updated = await update.json();
-      if (updated.modifiedCount > 0) {
-        router.refresh();
+      const data = await bookingRes.json();
+      if (data.acknowledged) {
+        toast.success("Session booked successfully!");
+
+        const update = await fetch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/tutors/${_id}`,
+          {
+            method: "PATCH",
+          },
+        );
+
+        const updated = await update.json();
+        if (updated.modifiedCount > 0) {
+          router.refresh();
+        }
       }
+    } catch (error) {
+      toast.error("Unable to book session. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -64,7 +73,16 @@ const BookSession = ({ tutor }) => {
           "No available slot"
         ) : (
           <>
-            Book Session <MdOutlineBookmarks />
+            {isSubmitting ? (
+              <>
+                <Spinner color="white" />
+                Booking...
+              </>
+            ) : (
+              <>
+                Book Session <MdOutlineBookmarks />
+              </>
+            )}
           </>
         )}
       </Button>
@@ -174,6 +192,7 @@ const BookSession = ({ tutor }) => {
                     <Button
                       type="submit"
                       slot="close"
+                      isDisabled={isSubmitting}
                       className="bg-[#0d8a6c] hover:bg-[#0a6b52] py-3 font-semibold"
                     >
                       Book Session
